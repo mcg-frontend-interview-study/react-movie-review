@@ -155,7 +155,9 @@ html,
     font-size: 62.5%;
     font-family: 'Pretendard', sans-serif;
   }
-
+  body {
+    background-color: rgba(17, 17, 17, 1);
+  }
   li {
     list-style: none;
   }
