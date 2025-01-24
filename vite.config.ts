@@ -26,5 +26,5 @@ export default defineConfig({
       {find: '@type', replacement: resolve(__dirname, 'src/type')},
     ],
   },
-  base: '/react-movie-review/',
+  // base: '/react-movie-review/',
 });
