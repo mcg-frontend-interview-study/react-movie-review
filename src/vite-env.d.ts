@@ -1,3 +1,4 @@
+/// <reference types="vite-plugin-svgr/client" />
 /// <reference types="vite/client" />
 
 declare namespace NodeJS {
@@ -7,4 +8,12 @@ declare namespace NodeJS {
     VITE_API_BASE_URL: 'string';
     VITE_IMAGE_URL_PREFIX: 'string';
   }
+}
+
+declare module '*.svg' {
+  import React from 'react';
+
+  export const ReactComponent: React.FC<React.SVGProps<SVGElement>>;
+  const src: string;
+  export default src;
 }

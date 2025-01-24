@@ -1,6 +1,6 @@
 import {ResponseMovieItem} from '@type/tmdb_api_response';
 import {itemCardStyle, itemScoreStyle, itemThumbnailStyle, itemTitleStyle} from './style';
-import starFilled from '@assets/star_filled.png';
+import StarFilled from '@assets/star_filled.svg?react';
 
 type ItemProps = ResponseMovieItem;
 
@@ -15,7 +15,7 @@ export const Item = ({poster_path, title, vote_average}: ItemProps) => {
       />
       <p css={itemTitleStyle}>{title}</p>
       <p css={itemScoreStyle}>
-        <img src={starFilled} alt="별점" /> {vote_average}
+        <StarFilled /> {vote_average}
       </p>
     </div>
   );
