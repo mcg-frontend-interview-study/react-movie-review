@@ -1,18 +1,17 @@
-import {useGetMovieList} from '@hooks/query/useGetMovieList';
 import {listStyle} from './style';
 import {Item} from './Item';
-import {InfinityScrollPlugin} from './InfinityScrollPlugin';
+import {ResponseMovieItem} from '@type/tmdb_api_response';
 
-export const ItemList = () => {
-  const {movieList, fetchNextPage} = useGetMovieList();
+type ItemListProps = {
+  movieList: ResponseMovieItem[];
+};
 
+export const ItemList = ({movieList}: ItemListProps) => {
   return (
-    <InfinityScrollPlugin callback={fetchNextPage}>
-      <ul css={listStyle}>
-        {movieList.map(movie => (
-          <Item key={movie.id} {...movie} />
-        ))}
-      </ul>
-    </InfinityScrollPlugin>
+    <ul css={listStyle}>
+      {movieList.map(movie => (
+        <Item key={movie.id} {...movie} />
+      ))}
+    </ul>
   );
 };
