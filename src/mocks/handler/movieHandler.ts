@@ -18,7 +18,7 @@ export const movieHandler = [
     const {vote} = await request.json();
 
     favoriteList.push({id: Number(movieId), vote});
-    return HttpResponse.json(movieId, {status: 200});
+    return HttpResponse.json({movieId}, {status: 200});
   }),
 
   http.patch<{movieId: string}, {vote: number}>(`${ENDPOINTS.favoriteMovie}/:movieId`, async ({params, request}) => {
@@ -26,6 +26,6 @@ export const movieHandler = [
     const {vote} = await request.json();
 
     favoriteList.filter(favorite => favorite.id === Number(movieId))[0].vote = vote;
-    return HttpResponse.json(movieId, {status: 200});
+    return HttpResponse.json({movieId}, {status: 200});
   }),
 ];
