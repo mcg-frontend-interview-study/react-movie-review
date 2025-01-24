@@ -1,5 +1,5 @@
 import {ENDPOINTS} from '@constants/endpoints';
-import {ResponseMoviePagination} from '@type/tmdb_api_response';
+import {ResponseMovieDetail, ResponseMoviePagination} from '@type/tmdb_api_response';
 import {http} from '@utils/http';
 
 export const getPopularMovieList = async (page: number) => {
@@ -21,6 +21,17 @@ export const getMatchedMovieList = async (page: number, query: string) => {
       language: 'ko-kr',
       page,
       query,
+    },
+  });
+
+  return response;
+};
+
+export const getMovieDetail = async (id: number) => {
+  const response = await http.get<ResponseMovieDetail>({
+    endpoint: `${ENDPOINTS.movieDetail}/${id}`,
+    params: {
+      language: 'ko-kr',
     },
   });
 
