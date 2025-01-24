@@ -1,16 +1,17 @@
 import { useInfiniteQuery } from '@tanstack/react-query';
-import { getPopularMovies } from '../api/movie';
+import { getSearchedMovies } from '../api/movie';
 
-const usePopularMovies = (keyword: string) => {
+const useSearchedMovies = (keyword: string) => {
   const { data, ...rest } = useInfiniteQuery({
     queryKey: ['popular'],
-    queryFn: ({ pageParam = 1 }) => getPopularMovies({ page: pageParam }),
+    queryFn: ({ pageParam = 1 }) =>
+      getSearchedMovies({ page: pageParam, keyword }),
     initialPageParam: 1,
     getNextPageParam: data => {
       const nextPage = data.page + 1;
       return nextPage <= data.total_pages ? nextPage : null;
     },
-    enabled: keyword.trim() === '',
+    enabled: !!keyword,
   });
 
   const movieList = data?.pages.flatMap(page => page.results) || [];
@@ -18,4 +19,4 @@ const usePopularMovies = (keyword: string) => {
   return { movieList, ...rest };
 };
 
-export default usePopularMovies;
+export default useSearchedMovies;
