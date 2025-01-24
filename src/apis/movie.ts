@@ -13,3 +13,16 @@ export const getPopularMovieList = async (page: number) => {
 
   return response;
 };
+
+export const getMatchedMovieList = async (page: number, query: string) => {
+  const response = await http.get<ResponseMoviePagination>({
+    endpoint: ENDPOINTS.matchedMovies,
+    params: {
+      language: 'ko-kr',
+      page,
+      query,
+    },
+  });
+
+  return response;
+};
