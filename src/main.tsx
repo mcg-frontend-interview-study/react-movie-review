@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme.ts';
 import GlobalStyle from './styles/GlobalStyle.tsx';
+import { ModalProvider } from './contexts/ModalContext.tsx';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,8 +37,10 @@ enableMocking().then(() => {
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <App />
+          <ModalProvider>
+            <GlobalStyle />
+            <App />
+          </ModalProvider>
         </ThemeProvider>
       </QueryClientProvider>
     </React.StrictMode>,

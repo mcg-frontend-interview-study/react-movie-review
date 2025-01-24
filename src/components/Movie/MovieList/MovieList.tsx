@@ -1,7 +1,11 @@
+import { useState } from 'react';
+import { useModalContext } from '../../../contexts/ModalContext';
 import usePopularMovies from '../../../queries/usePopularMovies';
 import useSearchedMovies from '../../../queries/useSearchedMovies';
 import Button from '../../_common/Button/Button';
+import Modal from '../../_common/Modal/Modal';
 import * as S from '../Movie.styled';
+import MovieDetail from '../MovieDetail/MovieDetail';
 import MovieItem from '../MovieItem/MovieItem';
 
 interface MovieListProps {
@@ -9,6 +13,15 @@ interface MovieListProps {
 }
 
 function MovieList({ keyword }: MovieListProps) {
+  const [selectedMovie, setSelectedMovie] = useState<number>();
+  const { isOpenModal, openModal, closeModal } = useModalContext();
+  console.log(selectedMovie);
+
+  const handleModalOpen = (movieId: number) => {
+    setSelectedMovie(movieId);
+    openModal('movie');
+  };
+
   const queries = [
     {
       name: 'popular',
@@ -31,7 +44,7 @@ function MovieList({ keyword }: MovieListProps) {
     <>
       <S.ItemList>
         {movieList.map(movie => (
-          <MovieItem movie={movie} key={movie.id} />
+          <MovieItem movie={movie} key={movie.id} onClick={handleModalOpen} />
         ))}
       </S.ItemList>
       {hasNextPage && (
@@ -40,6 +53,12 @@ function MovieList({ keyword }: MovieListProps) {
           onClick={() => fetchNextPage()}
           disabled={isFetchingNextPage}
         />
+      )}
+
+      {isOpenModal && (
+        <Modal onClose={() => closeModal('movie')} isOpen={isOpenModal}>
+          <MovieDetail />
+        </Modal>
       )}
     </>
   );
