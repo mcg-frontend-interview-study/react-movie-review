@@ -6,6 +6,7 @@ declare module 'styled-components' {
       primary: string;
       white: string;
       greyScale1: string;
+      greyScale2: string;
     };
     font: {
       title: string;

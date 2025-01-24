@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import * as S from './Modal.styled';
 import useEscapeKey from '../../../hooks/useEscapeKey';
@@ -43,7 +43,9 @@ const Modal = ({ children, isOpen, onClose }: ModalProps) => {
       }
     > */}
       <ModalBackdrop onClick={onClose} />
-      {children}
+      <S.ContentLayout>
+        <Suspense fallback={<>로딩 중</>}>{children}</Suspense>
+      </S.ContentLayout>
     </S.Layout>
   );
 

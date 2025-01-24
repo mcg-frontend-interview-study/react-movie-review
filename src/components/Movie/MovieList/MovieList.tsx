@@ -13,7 +13,7 @@ interface MovieListProps {
 }
 
 function MovieList({ keyword }: MovieListProps) {
-  const [selectedMovie, setSelectedMovie] = useState<number>();
+  const [selectedMovie, setSelectedMovie] = useState<number>(0);
   const { isOpenModal, openModal, closeModal } = useModalContext();
   console.log(selectedMovie);
 
@@ -57,7 +57,7 @@ function MovieList({ keyword }: MovieListProps) {
 
       {isOpenModal && (
         <Modal onClose={() => closeModal('movie')} isOpen={isOpenModal}>
-          <MovieDetail />
+          <MovieDetail movieId={selectedMovie} />
         </Modal>
       )}
     </>

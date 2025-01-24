@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -37,10 +37,12 @@ enableMocking().then(() => {
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
         <ThemeProvider theme={theme}>
-          <ModalProvider>
-            <GlobalStyle />
-            <App />
-          </ModalProvider>
+          <Suspense fallback={<>로딩 중</>}>
+            <ModalProvider>
+              <GlobalStyle />
+              <App />
+            </ModalProvider>
+          </Suspense>
         </ThemeProvider>
       </QueryClientProvider>
     </React.StrictMode>,
