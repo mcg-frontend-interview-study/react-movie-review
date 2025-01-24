@@ -1,9 +1,11 @@
 import {Header} from '@components/Header';
+import {ItemView} from '@components/ItemView';
 
 export const Main = () => {
   return (
-    <main>
+    <div id="app">
       <Header />
-    </main>
+      <ItemView />
+    </div>
   );
 };
