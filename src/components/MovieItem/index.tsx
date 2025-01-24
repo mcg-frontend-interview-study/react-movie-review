@@ -7,7 +7,7 @@ import {toOneDecimalPlace} from '../../utils/number';
 export type MovieItemProps = Pick<Movie, 'id' | 'title' | 'poster_path' | 'vote_average'>;
 
 const MovieItem = ({id, title, poster_path, vote_average}: MovieItemProps) => (
-  <S.MovieItem>
+  <S.MovieItem id={String(id)}>
     <a href="#">
       <S.MovieContent>
         <img src={`${IMAGE_BASE_URL}${poster_path}`} loading="lazy" alt={`${title}-포스터`} />

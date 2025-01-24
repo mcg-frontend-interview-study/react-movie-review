@@ -2,10 +2,11 @@ import styled from '@emotion/styled';
 
 export const MovieListContainer = styled.section`
   width: 100%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 1200px;
+
   margin: 0 auto;
 
   h2 {

@@ -4,8 +4,12 @@ import MovieItem from '../MovieItem';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import {useAtomValue} from 'jotai';
 import {searchTextAtom} from '../../jotai/atoms';
+import {Suspense, useState} from 'react';
+import DetailModal from '../DetailModal';
 
 const MovieList = () => {
+  const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
+
   const searchText = useAtomValue(searchTextAtom);
   const {data, hasNextPage, fetchNextPage, isLoading} = useGetList();
 
@@ -17,10 +21,23 @@ const MovieList = () => {
     isLastPage: !hasNextPage,
   });
 
+  const closeModal = () => setSelectedMovieId(null);
+
+  const handleItemClick = (event: React.MouseEvent<HTMLUListElement>) => {
+    const listItem = (event.target as HTMLElement).closest('li');
+    if (!listItem) return;
+
+    const id = Number(listItem.id);
+    const selectedItem = movies.find(item => item.id === id);
+
+    // 모달 열기
+    if (selectedItem) setSelectedMovieId(id);
+  };
+
   return (
     <S.MovieListContainer>
       <h2>{searchText ? `"${searchText}" 검색 결과` : '지금 인기 있는 영화'}</h2>
-      <S.MovieList>
+      <S.MovieList onClick={handleItemClick}>
         {movies.map((movie, index) => {
           const isLastMovie = index === movies.length - 1;
 
@@ -40,6 +57,11 @@ const MovieList = () => {
         })}
       </S.MovieList>
       {!hasNextPage && <p>마지막 페이지입니다!</p>}
+      {selectedMovieId && (
+        <Suspense fallback={<div>loading...</div>}>
+          <DetailModal selectedMovieId={selectedMovieId} closeModal={closeModal} />
+        </Suspense>
+      )}
     </S.MovieListContainer>
   );
 };
