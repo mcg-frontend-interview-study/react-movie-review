@@ -9,6 +9,7 @@ async function enableMocking() {
     return worker.start({onUnhandledRequest: 'bypass'});
   } else if (import.meta.env.MODE === 'production') {
     return worker.start({
+      onUnhandledRequest: 'bypass',
       serviceWorker: {
         url: 'mockServiceWorker.js', // GitHub Pages 경로
       },
