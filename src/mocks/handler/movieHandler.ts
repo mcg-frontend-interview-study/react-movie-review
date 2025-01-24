@@ -1,27 +1,31 @@
 import {ENDPOINTS} from '@constants/endpoints';
 import {favoriteList} from '@mocks/sharedState';
+import {MyScoreByMovie} from '@type/myScoreByMovie';
 import {http, HttpResponse} from 'msw';
 
 export const movieHandler = [
-  http.post<{movieId: string}, {vote: number}>(
-    `${import.meta.env.VITE_API_BASE_URL}${ENDPOINTS.favoriteMovie}`,
-    async ({params, request}) => {
-      const {movieId} = params;
-      const {vote} = await request.json();
+  http.get<{movieId: string}>(`${ENDPOINTS.favoriteMovie}/:movieId`, async ({params}) => {
+    const {movieId} = params;
 
-      favoriteList.push({id: Number(movieId), vote});
-      return new HttpResponse(null, {status: 200});
-    },
-  ),
+    const target = favoriteList.find(favorite => favorite.id === Number(movieId));
+    const response: MyScoreByMovie = typeof target !== 'undefined' ? target : {id: -1, vote: 0};
 
-  http.patch<{movieId: string}, {vote: number}>(
-    `${import.meta.env.VITE_API_BASE_URL}${ENDPOINTS.favoriteMovie}`,
-    async ({params, request}) => {
-      const {movieId} = params;
-      const {vote} = await request.json();
+    return HttpResponse.json(response, {status: 200});
+  }),
 
-      favoriteList.filter(favorite => favorite.id === Number(movieId))[0].vote = vote;
-      return new HttpResponse(null, {status: 200});
-    },
-  ),
+  http.post<{movieId: string}, {vote: number}>(`${ENDPOINTS.favoriteMovie}/:movieId`, async ({params, request}) => {
+    const {movieId} = params;
+    const {vote} = await request.json();
+
+    favoriteList.push({id: Number(movieId), vote});
+    return HttpResponse.json(movieId, {status: 200});
+  }),
+
+  http.patch<{movieId: string}, {vote: number}>(`${ENDPOINTS.favoriteMovie}/:movieId`, async ({params, request}) => {
+    const {movieId} = params;
+    const {vote} = await request.json();
+
+    favoriteList.filter(favorite => favorite.id === Number(movieId))[0].vote = vote;
+    return HttpResponse.json(movieId, {status: 200});
+  }),
 ];
