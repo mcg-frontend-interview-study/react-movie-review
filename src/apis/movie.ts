@@ -41,7 +41,7 @@ export const getMovieDetail = async (id: number) => {
 
 export const getMovieScore = async (id: number) => {
   const response = await http.get<MyScoreByMovie>({
-    baseUrl: 'http://localhost:5173',
+    baseUrl: 'star',
     endpoint: `${ENDPOINTS.favoriteMovie}/${id.toString()}`,
   });
 
@@ -55,7 +55,7 @@ type Args = {
 
 export const postMovieScore = async (args: Args) => {
   const response = await http.post<{movieId: string}>({
-    baseUrl: 'http://localhost:5173',
+    baseUrl: 'star',
     endpoint: `${ENDPOINTS.favoriteMovie}/${args.id.toString()}`,
     body: {
       vote: args.vote,
@@ -67,7 +67,7 @@ export const postMovieScore = async (args: Args) => {
 
 export const patchMovieScore = async (args: Args) => {
   const response = await http.patch<{movieId: string}>({
-    baseUrl: 'http://localhost:5173',
+    baseUrl: 'star',
     endpoint: `${ENDPOINTS.favoriteMovie}/${args.id.toString()}`,
     body: {
       vote: args.vote,

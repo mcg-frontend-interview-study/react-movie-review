@@ -4,7 +4,7 @@ import {MyScoreByMovie} from '@type/myScoreByMovie';
 import {http, HttpResponse} from 'msw';
 
 export const movieHandler = [
-  http.get<{movieId: string}>(`${ENDPOINTS.favoriteMovie}/:movieId`, async ({params}) => {
+  http.get<{movieId: string}>(`star${ENDPOINTS.favoriteMovie}/:movieId`, async ({params}) => {
     const {movieId} = params;
 
     const target = favoriteList.find(favorite => favorite.id === Number(movieId));
@@ -13,7 +13,7 @@ export const movieHandler = [
     return HttpResponse.json(response, {status: 200});
   }),
 
-  http.post<{movieId: string}, {vote: number}>(`${ENDPOINTS.favoriteMovie}/:movieId`, async ({params, request}) => {
+  http.post<{movieId: string}, {vote: number}>(`star${ENDPOINTS.favoriteMovie}/:movieId`, async ({params, request}) => {
     const {movieId} = params;
     const {vote} = await request.json();
 
@@ -21,11 +21,14 @@ export const movieHandler = [
     return HttpResponse.json({movieId}, {status: 200});
   }),
 
-  http.patch<{movieId: string}, {vote: number}>(`${ENDPOINTS.favoriteMovie}/:movieId`, async ({params, request}) => {
-    const {movieId} = params;
-    const {vote} = await request.json();
+  http.patch<{movieId: string}, {vote: number}>(
+    `star${ENDPOINTS.favoriteMovie}/:movieId`,
+    async ({params, request}) => {
+      const {movieId} = params;
+      const {vote} = await request.json();
 
-    favoriteList.filter(favorite => favorite.id === Number(movieId))[0].vote = vote;
-    return HttpResponse.json({movieId}, {status: 200});
-  }),
+      favoriteList.filter(favorite => favorite.id === Number(movieId))[0].vote = vote;
+      return HttpResponse.json({movieId}, {status: 200});
+    },
+  ),
 ];
