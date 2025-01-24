@@ -1,6 +1,7 @@
 import {Main} from './pages/Main';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {GlobalStyle} from './styles/GlobalStyle';
+import './index.css';
 
 export const App = () => {
   const queryClient = new QueryClient({
