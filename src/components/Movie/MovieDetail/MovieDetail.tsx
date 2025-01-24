@@ -32,6 +32,11 @@ function MovieDetail({ movieId }: MovieDetailProps) {
   return (
     <S.Layout>
       <S.TitleText>{movieDetail.title}</S.TitleText>
+      <S.TitleText>{movieDetail.overview}</S.TitleText>
+      <S.TitleText>{movieDetail.vote_average}</S.TitleText>
+      <S.TitleText>
+        {movieDetail.genres.flatMap(genre => genre.name).join(', ')}
+      </S.TitleText>
       {[...Array(5)].map((_, index) => (
         <S.StarImage
           key={index}
