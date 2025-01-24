@@ -1,9 +1,9 @@
 import {ItemList} from '@components/ItemList';
 import {InfinityScrollPlugin} from '@components/ItemList/InfinityScrollPlugin';
-import {useGetMovieList} from '@hooks/query/useGetMovieList';
+import {useGetPopularMovieList} from '@hooks/query/useGetPopularMovieList';
 
 export const PopularList = () => {
-  const {movieList, fetchNextPage} = useGetMovieList();
+  const {movieList, fetchNextPage} = useGetPopularMovieList();
 
   return (
     <InfinityScrollPlugin callback={fetchNextPage}>

@@ -2,7 +2,7 @@ import {getPopularMovieList} from '@apis/movie';
 import {QUERY_KEYS} from '@constants/queryKeys';
 import {useSuspenseInfiniteQuery} from '@tanstack/react-query';
 
-export const useGetMovieList = () => {
+export const useGetPopularMovieList = () => {
   const {data, fetchNextPage, isFetchingNextPage} = useSuspenseInfiniteQuery({
     queryKey: [QUERY_KEYS.getMovieList],
     queryFn: ({pageParam}) => getPopularMovieList(pageParam),
