@@ -1,15 +1,18 @@
 import {useGetMovieList} from '@hooks/query/useGetMovieList';
 import {listStyle} from './style';
 import {Item} from './Item';
+import {InfinityScrollPlugin} from './InfinityScrollPlugin';
 
 export const ItemList = () => {
-  const {movieList} = useGetMovieList();
+  const {movieList, fetchNextPage} = useGetMovieList();
 
   return (
-    <ul css={listStyle}>
-      {movieList.map(movie => (
-        <Item key={movie.id} {...movie} />
-      ))}
-    </ul>
+    <InfinityScrollPlugin callback={fetchNextPage}>
+      <ul css={listStyle}>
+        {movieList.map(movie => (
+          <Item key={movie.id} {...movie} />
+        ))}
+      </ul>
+    </InfinityScrollPlugin>
   );
 };

@@ -52,3 +52,8 @@ export const skeletonStyle = css({
   animation: `${skeletonAnimation} 5s infinite ease-out`,
   borderRadius: '8px',
 });
+
+export const fetchNextAreaStyle = css({
+  width: 10,
+  height: 10,
+});
