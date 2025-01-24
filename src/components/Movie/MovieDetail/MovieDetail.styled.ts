@@ -14,3 +14,13 @@ export const Layout = styled.div`
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.greyScale2};
 `;
+
+export const TitleText = styled.p`
+  ${({ theme }) => theme.font.body};
+`;
+
+export const Rating = styled.p`
+  ${({ theme }) => theme.font.body};
+`;
+
+export const StarImage = styled.img``;

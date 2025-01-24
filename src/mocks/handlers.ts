@@ -1,15 +1,36 @@
 // src/mocks/handlers.js
 import { http, HttpResponse } from 'msw';
 import { API_URL } from '../api/constant';
+import mockRatings from './data/mockRatings.json';
 
 export const handlers = [
-  // Intercept "GET https://example.com/user" requests...
-  http.get(`${API_URL}/user`, () => {
-    // ...and respond to them using this JSON response.
-    return HttpResponse.json({
-      id: 'c7b3d8e0-5e0b-4b0f-8b3a-3b9f4b3d3b3d',
-      firstName: 'John',
-      lastName: 'Maverick',
-    });
+  http.get(`${API_URL}/rating/:id`, ({ request }) => {
+    const url = new URL(request.url);
+    const movieId = Number(url.pathname.split('/').at(-1));
+
+    const rating = mockRatings.find(movie => movie.id === movieId);
+
+    if (rating) {
+      return HttpResponse.json(rating.rating);
+    }
+
+    return HttpResponse.json(0);
+  }),
+  http.post(`${API_URL}/rating/:id`, async ({ request }) => {
+    const url = new URL(request.url);
+    const movieId = Number(url.pathname.split('/').at(-1));
+    const { rating } = (await request.json()) as { rating: number };
+
+    const movieData = mockRatings.find(movie => movie.id === movieId);
+
+    if (movieData) {
+      movieData.rating = rating;
+      return HttpResponse.json(movieData.rating);
+    }
+
+    const newMovie = { id: movieId, rating };
+    mockRatings.push(newMovie);
+
+    return HttpResponse.json(newMovie.rating);
   }),
 ];

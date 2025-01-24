@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { TMDB_URL } from './constant';
+import { API_URL, TMDB_URL } from './constant';
 import { Movie, MovieDetail } from '../types/movie.type';
 
 interface GetPopularMoviesResponse {
@@ -86,6 +86,45 @@ export const getMovie = async ({
     });
 
     return response.data;
+  } catch (error) {
+    throw new Error('Failed to fetch popular movies');
+  }
+};
+
+export const getRating = async ({
+  movieId,
+}: {
+  movieId: number;
+}): Promise<number> => {
+  try {
+    const response = await axios({
+      method: 'GET',
+      url: `${API_URL}/rating/${movieId}`,
+    });
+
+    return response.data;
+  } catch (error) {
+    throw new Error('Failed to fetch popular movies');
+  }
+};
+
+export const updateRating = async ({
+  movieId,
+  rating,
+}: {
+  movieId: number;
+  rating: number;
+}): Promise<{ rating: number }> => {
+  try {
+    const response = await axios({
+      method: 'POST',
+      url: `${API_URL}/rating/${movieId}`,
+      data: {
+        rating,
+      },
+    });
+
+    return { rating: response.data };
   } catch (error) {
     throw new Error('Failed to fetch popular movies');
   }
