@@ -5,6 +5,7 @@ import App from './App.tsx';
 import {Global} from '@emotion/react';
 import reset from './styles/reset.ts';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import globalStyles from './styles/globalStyles.ts';
 
 async function enableMocking() {
   const {worker} = await import('./mocks/browser.ts');
@@ -37,7 +38,7 @@ enableMocking().then(() => {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <QueryClientProvider client={queryClient}>
-        <Global styles={reset} />
+        <Global styles={globalStyles} />
         <App />
       </QueryClientProvider>
     </StrictMode>,
