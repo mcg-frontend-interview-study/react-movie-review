@@ -1,5 +1,6 @@
 import {Main} from './pages/Main';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
+import {GlobalStyle} from './styles/GlobalStyle';
 
 export const App = () => {
   const queryClient = new QueryClient({
@@ -14,7 +15,8 @@ export const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Main />;
+      <GlobalStyle />
+      <Main />
     </QueryClientProvider>
   );
 };
