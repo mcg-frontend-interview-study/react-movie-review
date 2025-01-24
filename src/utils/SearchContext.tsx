@@ -5,6 +5,7 @@ type SearchContextType = {
   input: string;
   handleInput: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
+  resetKeyword: () => void;
 };
 
 const SearchContext = createContext<SearchContextType | null>(null);
@@ -33,5 +34,13 @@ export const SearchContextProvider = ({children}: React.PropsWithChildren) => {
     setInput('');
   };
 
-  return <SearchContext.Provider value={{keyword, input, handleInput, onSubmit}}>{children}</SearchContext.Provider>;
+  const resetKeyword = () => {
+    setKeyword('');
+  };
+
+  return (
+    <SearchContext.Provider value={{keyword, input, handleInput, onSubmit, resetKeyword}}>
+      {children}
+    </SearchContext.Provider>
+  );
 };
