@@ -3,7 +3,6 @@ import {createRoot} from 'react-dom/client';
 import './index.css';
 import App from './App.tsx';
 import {Global} from '@emotion/react';
-import reset from './styles/reset.ts';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import globalStyles from './styles/globalStyles.ts';
 
@@ -27,6 +26,7 @@ const queryClient = new QueryClient({
     queries: {
       throwOnError: true,
       refetchOnWindowFocus: false,
+      retry: 1,
     },
     mutations: {
       throwOnError: true,
