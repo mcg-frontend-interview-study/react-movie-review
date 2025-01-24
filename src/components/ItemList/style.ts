@@ -3,9 +3,17 @@ import {css, keyframes} from '@emotion/react';
 export const listStyle = css({
   display: 'grid',
   margin: '48px 0',
-  gridTemplateColumns: 'repeat(4, 180px)',
-  gridColumnGap: '160px',
-  gridRowGap: '48px',
+  gridTemplateColumns: 'repeat(4, 1fr)',
+  gridColumnGap: 32,
+  gridRowGap: 48,
+
+  '@media (max-width: 833px)': {
+    gridTemplateColumns: 'repeat(3, 1fr)',
+  },
+
+  '@media (max-width: 450px)': {
+    gridTemplateColumns: 'repeat(2, 1fr)',
+  },
 });
 
 export const itemCardStyle = css({
@@ -15,8 +23,7 @@ export const itemCardStyle = css({
 
 export const itemThumbnailStyle = css({
   borderRadius: '8px',
-  width: '180px',
-  height: '270px',
+  width: '100%',
   backgroundSize: 'contain',
 });
 

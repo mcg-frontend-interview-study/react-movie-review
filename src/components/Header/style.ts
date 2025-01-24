@@ -2,7 +2,6 @@ import {css} from '@emotion/react';
 
 export const headerStyle = css({
   width: '100%',
-  minWidth: 1200,
   height: 72,
   backgroundColor: '#222',
   display: 'flex',

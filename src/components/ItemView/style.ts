@@ -4,8 +4,9 @@ export const itemViewStyle = css({
   display: 'flex',
   flexDirection: 'column',
   justifyContent: 'center',
-  width: '1200px',
+  width: '100%',
   margin: '0 auto',
+  padding: 48,
 });
 
 export const h2Style = css({
