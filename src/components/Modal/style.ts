@@ -19,7 +19,7 @@ export const modalStyle = css({
   background: '#212122',
   borderRadius: 8,
 
-  '@media (min-width: 833px)': {
+  '@media (max-width: 833px)': {
     bottom: 0,
     left: 0,
     width: '100%',
