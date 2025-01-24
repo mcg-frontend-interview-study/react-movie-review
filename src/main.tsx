@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './styles/theme.ts';
 import GlobalStyle from './styles/GlobalStyle.tsx';
 import { ModalProvider } from './contexts/ModalContext.tsx';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -36,6 +37,7 @@ enableMocking().then(() => {
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools />
         <ThemeProvider theme={theme}>
           <Suspense fallback={<>로딩 중</>}>
             <ModalProvider>
