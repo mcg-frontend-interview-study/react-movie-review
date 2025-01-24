@@ -1,4 +1,4 @@
-import {css} from '@emotion/react';
+import {css, keyframes} from '@emotion/react';
 
 export const listStyle = css({
   display: 'grid',
@@ -32,4 +32,23 @@ export const itemScoreStyle = css({
   '::after': {
     marginLeft: '8px',
   },
+});
+
+const skeletonAnimation = keyframes({
+  '0%': {
+    backgroundPosition: '0% 50%',
+  },
+  '50%': {
+    backgroundPosition: '100% 50%',
+  },
+  '100%': {
+    backgroundPosition: '0% 50%',
+  },
+});
+
+export const skeletonStyle = css({
+  background: 'linear-gradient(-90deg, #aaa, #f0f0f0, #aaa, #f0f0f0)',
+  backgroundSize: '400%',
+  animation: `${skeletonAnimation} 5s infinite ease-out`,
+  borderRadius: '8px',
 });
