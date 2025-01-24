@@ -4,7 +4,16 @@ import {App} from './App';
 
 async function enableMocking() {
   const {worker} = await import('@mocks/browser');
-  return worker.start({onUnhandledRequest: 'bypass'});
+
+  if (import.meta.env.MODE === 'development') {
+    return worker.start({onUnhandledRequest: 'bypass'});
+  } else if (import.meta.env.MODE === 'production') {
+    return worker.start({
+      serviceWorker: {
+        url: 'mockServiceWorker.js', // GitHub Pages 경로
+      },
+    });
+  }
 }
 
 enableMocking().then(() => {
