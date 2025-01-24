@@ -1,10 +1,15 @@
+import {useSearchContext} from '@utils/SearchContext';
 import {boxStyle, inputStyle, buttonStyle} from './style';
 
 export const SearchBox = () => {
+  const {input, handleInput, onSubmit} = useSearchContext();
+
   return (
-    <div css={boxStyle}>
-      <input type="text" placeholder="검색" css={inputStyle} />
-      <button css={buttonStyle}>검색</button>
-    </div>
+    <form css={boxStyle} onSubmit={onSubmit}>
+      <input type="text" placeholder="검색" css={inputStyle} onChange={handleInput} value={input} />
+      <button type="submit" css={buttonStyle}>
+        검색
+      </button>
+    </form>
   );
 };
