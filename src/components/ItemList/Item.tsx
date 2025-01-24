@@ -4,9 +4,9 @@ import StarFilled from '@assets/star_filled.svg?react';
 
 type ItemProps = ResponseMovieItem;
 
-export const Item = ({poster_path, title, vote_average}: ItemProps) => {
+export const Item = ({id, poster_path, title, vote_average}: ItemProps) => {
   return (
-    <div css={itemCardStyle}>
+    <li css={itemCardStyle} id={id.toString()}>
       <img
         css={itemThumbnailStyle}
         src={import.meta.env.VITE_IMAGE_URL_PREFIX + poster_path}
@@ -17,6 +17,6 @@ export const Item = ({poster_path, title, vote_average}: ItemProps) => {
       <p css={itemScoreStyle}>
         <StarFilled /> {vote_average}
       </p>
-    </div>
+    </li>
   );
 };
