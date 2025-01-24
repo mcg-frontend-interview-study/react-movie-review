@@ -9,42 +9,35 @@ interface MovieListProps {
 }
 
 function MovieList({ keyword }: MovieListProps) {
-  const {
-    movieList,
-    fetchNextPage: fetchPopularNextPage,
-    isFetchingNextPage: isFetchingPopularNextPage,
-    hasNextPage: hasPopularNextPage,
-  } = usePopularMovies(keyword);
+  const queries = [
+    {
+      name: 'popular',
+      condition: keyword.trim() === '',
+      hook: usePopularMovies,
+    },
+    {
+      name: 'searched',
+      condition: keyword.trim() !== '',
+      hook: useSearchedMovies,
+    },
+  ];
 
-  const {
-    movieList: searchedMovieList,
-    fetchNextPage: fetchSearchedNextPage,
-    isFetchingNextPage: isFetchingSearchedNextPage,
-    hasNextPage: hasSearchedNextPage,
-  } = useSearchedMovies(keyword);
+  const activeQuery = queries.find(query => query.condition) || queries[0];
 
-  const renderMovieList =
-    searchedMovieList.length > 0 ? searchedMovieList : movieList;
-  const renderFetchNextPage =
-    movieList.length > 0 ? fetchPopularNextPage : fetchSearchedNextPage;
-  const isFetchingNextPage =
-    movieList.length > 0
-      ? isFetchingPopularNextPage
-      : isFetchingSearchedNextPage;
-  const hasNextPage =
-    movieList.length > 0 ? hasPopularNextPage : hasSearchedNextPage;
+  const { movieList, fetchNextPage, isFetchingNextPage, hasNextPage } =
+    activeQuery.hook(keyword);
 
   return (
     <>
       <S.ItemList>
-        {renderMovieList.map(movie => (
+        {movieList.map(movie => (
           <MovieItem movie={movie} key={movie.id} />
         ))}
       </S.ItemList>
       {hasNextPage && (
         <Button
           content={isFetchingNextPage ? '로딩 중...' : '더보기'}
-          onClick={() => renderFetchNextPage()}
+          onClick={() => fetchNextPage()}
           disabled={isFetchingNextPage}
         />
       )}
