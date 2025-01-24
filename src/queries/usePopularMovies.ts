@@ -1,13 +1,18 @@
-import { useSuspenseQuery } from '@tanstack/react-query';
+import { useSuspenseInfiniteQuery } from '@tanstack/react-query';
 import { getPopularMovies } from '../api/movie';
 
 const usePopularMovies = () => {
-  const { data, ...rest } = useSuspenseQuery({
+  const { data, ...rest } = useSuspenseInfiniteQuery({
     queryKey: ['popular'],
-    queryFn: getPopularMovies,
+    queryFn: ({ pageParam = 1 }) => getPopularMovies({ page: pageParam }),
+    initialPageParam: 1,
+    getNextPageParam: data => {
+      const nextPage = data.page + 1;
+      return nextPage <= data.total_pages ? nextPage : undefined;
+    },
   });
 
-  const movieList = data.results;
+  const movieList = data.pages.flatMap(page => page.results) || [];
 
   return { movieList, ...rest };
 };

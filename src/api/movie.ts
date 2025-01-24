@@ -9,13 +9,17 @@ interface GetPopularMoviesResponse {
   total_results: number;
 }
 
-export const getPopularMovies = async (): Promise<GetPopularMoviesResponse> => {
+export const getPopularMovies = async ({
+  page,
+}: {
+  page: number;
+}): Promise<GetPopularMoviesResponse> => {
   try {
     const response = await axios.get(
       `${TMDB_URL}/movie/popular?${new URLSearchParams({
         api_key: import.meta.env.VITE_API_KEY,
         language: 'ko-KR',
-        // page: `${page}`,
+        page: `${page}`,
       })}`,
     );
 
