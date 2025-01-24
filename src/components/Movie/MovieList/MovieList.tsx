@@ -1,12 +1,12 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useModalContext } from '../../../contexts/ModalContext';
 import usePopularMovies from '../../../queries/usePopularMovies';
 import useSearchedMovies from '../../../queries/useSearchedMovies';
-import Button from '../../_common/Button/Button';
 import Modal from '../../_common/Modal/Modal';
 import * as S from '../Movie.styled';
 import MovieDetail from '../MovieDetail/MovieDetail';
 import MovieItem from '../MovieItem/MovieItem';
+import FetchTargetBox from '../../_common/FetchTargetBox/FetchTargetBox';
 
 interface MovieListProps {
   keyword: string;
@@ -14,8 +14,9 @@ interface MovieListProps {
 
 function MovieList({ keyword }: MovieListProps) {
   const [selectedMovie, setSelectedMovie] = useState<number>(0);
+  const nextFetchTargetRef = useRef<HTMLDivElement | null>(null);
+
   const { isOpenModal, openModal, closeModal } = useModalContext();
-  console.log(selectedMovie);
 
   const handleModalOpen = (movieId: number) => {
     setSelectedMovie(movieId);
@@ -40,6 +41,34 @@ function MovieList({ keyword }: MovieListProps) {
   const { movieList, fetchNextPage, isFetchingNextPage, hasNextPage } =
     activeQuery.hook(keyword);
 
+  useEffect(() => {
+    const options = {
+      root: null,
+      threshold: 0.1,
+    };
+
+    const fetchCallback: IntersectionObserverCallback = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && hasNextPage) {
+          fetchNextPage();
+          observer.unobserve(entry.target);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(fetchCallback, options);
+
+    if (nextFetchTargetRef.current) {
+      observer.observe(nextFetchTargetRef.current);
+    }
+
+    return () => {
+      if (nextFetchTargetRef.current) {
+        observer.unobserve(nextFetchTargetRef.current);
+      }
+    };
+  }, [hasNextPage, fetchNextPage, movieList]);
+
   return (
     <>
       <S.ItemList>
@@ -47,13 +76,16 @@ function MovieList({ keyword }: MovieListProps) {
           <MovieItem movie={movie} key={movie.id} onClick={handleModalOpen} />
         ))}
       </S.ItemList>
-      {hasNextPage && (
+      {!isFetchingNextPage && hasNextPage && (
+        <FetchTargetBox ref={nextFetchTargetRef} />
+      )}
+      {/* {hasNextPage && (
         <Button
           content={isFetchingNextPage ? '로딩 중...' : '더보기'}
           onClick={() => fetchNextPage()}
           disabled={isFetchingNextPage}
         />
-      )}
+      )} */}
 
       {isOpenModal && (
         <Modal onClose={() => closeModal('movie')} isOpen={isOpenModal}>

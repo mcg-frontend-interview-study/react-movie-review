@@ -23,4 +23,6 @@ export const Rating = styled.p`
   ${({ theme }) => theme.font.body};
 `;
 
-export const StarImage = styled.img``;
+export const StarImage = styled.img`
+  cursor: pointer;
+`;

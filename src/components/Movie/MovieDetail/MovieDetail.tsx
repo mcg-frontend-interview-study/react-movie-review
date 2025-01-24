@@ -33,7 +33,7 @@ function MovieDetail({ movieId }: MovieDetailProps) {
     <S.Layout>
       <S.TitleText>{movieDetail.title}</S.TitleText>
       {[...Array(5)].map((_, index) => (
-        <img
+        <S.StarImage
           key={index}
           src={
             index < filledStars
