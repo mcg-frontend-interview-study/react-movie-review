@@ -59,6 +59,12 @@ export const movieSummaryStyle = css({
   rowGap: '16px',
 });
 
+export const voteAverageStyle = css({
+  display: 'flex',
+  alignItems: 'center',
+  gap: 8,
+});
+
 export const outlineStyle = css({
   display: 'flex',
   justifyContent: 'flex-start',

@@ -7,9 +7,11 @@ import {
   outlineStyle,
   overviewStyle,
   posterStyle,
+  voteAverageStyle,
   voteMyRateStyle,
 } from './style';
 import {useGetMovieDetail} from '@hooks/query/useGetMovieDetail';
+import StarFilled from '@assets/star_filled.svg?react';
 
 type ItemDetailProps = {
   selectedId: number | null;
@@ -28,9 +30,15 @@ export const ItemDetail = ({selectedId}: ItemDetailProps) => {
         <article css={detailContentStyle}>
           <figcaption css={movieSummaryStyle}>
             <div css={outlineStyle}>
-              <p className="text-body"></p>
+              <p className="text-body">{detail?.genres.map(genre => genre.name).join(', ')}</p>
+              <div css={voteAverageStyle} className="text-body">
+                <StarFilled />
+                {detail?.vote_average}
+              </div>
             </div>
-            <p css={overviewStyle} className="text-body"></p>
+            <p css={overviewStyle} className="text-body">
+              {detail?.overview}
+            </p>
           </figcaption>
           <aside css={voteMyRateStyle}></aside>
         </article>
