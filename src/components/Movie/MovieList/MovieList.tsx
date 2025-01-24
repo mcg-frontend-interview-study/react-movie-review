@@ -23,7 +23,8 @@ function MovieList({ keyword }: MovieListProps) {
     hasNextPage: hasSearchedNextPage,
   } = useSearchedMovies(keyword);
 
-  const renderMovieList = movieList.length > 0 ? movieList : searchedMovieList;
+  const renderMovieList =
+    searchedMovieList.length > 0 ? searchedMovieList : movieList;
   const renderFetchNextPage =
     movieList.length > 0 ? fetchPopularNextPage : fetchSearchedNextPage;
   const isFetchingNextPage =
@@ -33,7 +34,7 @@ function MovieList({ keyword }: MovieListProps) {
   const hasNextPage =
     movieList.length > 0 ? hasPopularNextPage : hasSearchedNextPage;
 
-    return (
+  return (
     <>
       <S.ItemList>
         {renderMovieList.map(movie => (

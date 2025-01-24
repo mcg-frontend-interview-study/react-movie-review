@@ -3,9 +3,11 @@ import { getSearchedMovies } from '../api/movie';
 
 const useSearchedMovies = (keyword: string) => {
   const { data, ...rest } = useInfiniteQuery({
-    queryKey: ['popular'],
-    queryFn: ({ pageParam = 1 }) =>
-      getSearchedMovies({ page: pageParam, keyword }),
+    queryKey: ['popular', keyword],
+    queryFn: ({ pageParam = 1, queryKey }) => {
+      const [, keyword] = queryKey;
+      return getSearchedMovies({ page: pageParam, keyword });
+    },
     initialPageParam: 1,
     getNextPageParam: data => {
       const nextPage = data.page + 1;
