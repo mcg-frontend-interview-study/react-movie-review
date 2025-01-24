@@ -8,7 +8,7 @@ export const usePostMovieScore = () => {
   const {mutate} = useMutation({
     mutationFn: postMovieScore,
     onSuccess: data => {
-      queryClient.invalidateQueries({queryKey: [QUERY_KEYS.getMovieScore, data.movieId]});
+      queryClient.invalidateQueries({queryKey: [QUERY_KEYS.getMovieScore, Number(data.movieId)]});
     },
   });
 
