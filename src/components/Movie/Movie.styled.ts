@@ -20,7 +20,7 @@ export const ContentLayout = styled.main`
 export const MovieListLayout = styled.div`
   width: 100%;
   height: 100%;
-  max-width: ${DISPLAY_SIZE.desktop};
+  max-width: ${DISPLAY_SIZE.desktop}px;
 
   margin: 0 auto;
 `;

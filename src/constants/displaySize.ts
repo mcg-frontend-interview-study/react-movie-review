@@ -1,5 +1,5 @@
 export const DISPLAY_SIZE = {
-  mobile: '48rem',
-  tablet: '76.8rem',
-  desktop: '102.4rem',
-};
+  mobile: 480,
+  tablet: 768,
+  desktop: 1024,
+} as const;

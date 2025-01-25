@@ -36,7 +36,6 @@ export const InputBox = styled.div<{ $isExpanded: boolean }>`
   justify-content: space-between;
   gap: 0.8rem;
 
-  position: absolute;
   right: 3.2rem;
 
   width: 100%;
@@ -52,6 +51,7 @@ export const InputBox = styled.div<{ $isExpanded: boolean }>`
   transition: width 0.2s ease;
 
   ${({ $isExpanded }) => media.mobile`
+      position: absolute;
       width: ${$isExpanded ? 'calc(100% - 6.4rem)' : '4.8rem'};
       max-width: 100%;
       height: 4.4rem;
