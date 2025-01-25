@@ -1,4 +1,5 @@
-import * as S from './Header.styled';
+import LargeHeader from './LargeHeader';
+import MobileHeader from './MobileHeader';
 
 interface HeaderProps extends React.InputHTMLAttributes<HTMLInputElement> {
   searchKeyword: string;
@@ -6,17 +7,12 @@ interface HeaderProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 function Header({ searchKeyword, onSearch, ...rest }: HeaderProps) {
-  return (
-    <div>
-      logo
-      <S.Input
-        {...rest}
-        value={searchKeyword}
-        onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
-          onSearch(event.target.value)
-        }
-      />
-    </div>
+  const isMobile = window.innerWidth <= 480;
+
+  return isMobile ? (
+    <MobileHeader searchKeyword={searchKeyword} onSearch={onSearch} {...rest} />
+  ) : (
+    <LargeHeader searchKeyword={searchKeyword} onSearch={onSearch} {...rest} />
   );
 }
 
