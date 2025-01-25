@@ -1,6 +1,7 @@
 import {Suspense} from 'react';
 import MovieList from './components/MovieList';
 import Header from './components/Header';
+import SkeletonMovieList from './components/skeleton/MovieList';
 
 function App() {
   return (
@@ -8,9 +9,7 @@ function App() {
       <Header />
 
       <main>
-        <Suspense fallback={<p>Loading...</p>}>
-          <MovieList />
-        </Suspense>
+        <MovieList />
       </main>
     </div>
   );

@@ -1,6 +1,8 @@
 import {BASE_URL, POPULAR_MOVIE_URL, SEARCH_URL} from '../constants/movie';
 import {MovieDetail, MovieList} from '../types/movie';
 
+const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+
 export const getMovieList = async ({pageParam = 1}: {pageParam?: number}) => {
   const params = {
     api_key: import.meta.env.VITE_TMDB_TOKEN,
@@ -8,6 +10,8 @@ export const getMovieList = async ({pageParam = 1}: {pageParam?: number}) => {
     page: String(pageParam),
   };
   const endpoint = `${POPULAR_MOVIE_URL}?${new URLSearchParams(params).toString()}`;
+
+  await delay(1500); // NOTE: 스켈레톤 디스플레이를 위함
 
   const response = await fetch(endpoint, {
     method: 'GET',
@@ -41,6 +45,7 @@ export const getSearchedMovieList = async ({pageParam = 1, title}: GetSearchedMo
 
   const endpoint = `${SEARCH_URL}?${new URLSearchParams(params).toString()}`;
 
+  await delay(1500); // NOTE: 스켈레톤 디스플레이를 위함
   const response = await fetch(endpoint, {
     method: 'GET',
     headers: {
