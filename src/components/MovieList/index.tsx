@@ -25,6 +25,8 @@ const MovieList = () => {
   const closeModal = () => setSelectedMovieId(null);
 
   const handleItemClick = (event: React.MouseEvent<HTMLUListElement>) => {
+    event.preventDefault();
+
     const listItem = (event.target as HTMLElement).closest('li');
     if (!listItem) return;
 
