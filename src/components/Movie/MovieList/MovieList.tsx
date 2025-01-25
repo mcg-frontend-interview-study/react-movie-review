@@ -79,13 +79,6 @@ function MovieList({ keyword }: MovieListProps) {
       {!isFetchingNextPage && hasNextPage && (
         <FetchTargetBox ref={nextFetchTargetRef} />
       )}
-      {/* {hasNextPage && (
-        <Button
-          content={isFetchingNextPage ? '로딩 중...' : '더보기'}
-          onClick={() => fetchNextPage()}
-          disabled={isFetchingNextPage}
-        />
-      )} */}
 
       {isOpenModal && (
         <Modal onClose={() => closeModal('movie')} isOpen={isOpenModal}>

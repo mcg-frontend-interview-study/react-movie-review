@@ -6,9 +6,9 @@ interface TitleProps {
 
 function Title({ content }: TitleProps) {
   return (
-    <div>
+    <>
       <S.TitleText>{content}</S.TitleText>
-    </div>
+    </>
   );
 }
 
