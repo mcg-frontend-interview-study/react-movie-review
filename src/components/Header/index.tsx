@@ -9,8 +9,8 @@ const Header = () => {
         <S.LogoWrapper onClick={() => window.location.reload()} type="button">
           <img src={movieLogo} alt="MovieList 로고" />
         </S.LogoWrapper>
-        <Search />
       </h1>
+      <Search />
     </S.Header>
   );
 };
