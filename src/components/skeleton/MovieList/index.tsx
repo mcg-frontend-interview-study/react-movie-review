@@ -1,5 +1,4 @@
-import MovieItem from '../MovieItem';
-import * as S from './styles';
+import SkeletonMovieItem from '../MovieItem';
 
 const DEFAULT_PAGE_SIZE = 20;
 
@@ -11,7 +10,7 @@ const SkeletonMovieList = ({length = DEFAULT_PAGE_SIZE}: SkeletonMovieListProps)
   return (
     <>
       {Array.from({length: length}).map((_, index) => (
-        <MovieItem key={`skeleton-${index}`} />
+        <SkeletonMovieItem key={`skeleton-${index}`} />
       ))}
     </>
   );

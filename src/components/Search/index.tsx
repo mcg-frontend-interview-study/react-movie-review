@@ -24,7 +24,13 @@ const Search = () => {
 
   return (
     <S.Search>
-      <input type="text" placeholder="검색" value={inputValue} onChange={handleChange} onKeyDown={handleKeyDown} />
+      <S.SearchInput
+        type="text"
+        placeholder="검색"
+        value={inputValue}
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+      />
       <button type="button" onClick={handleSearch}>
         검색
       </button>

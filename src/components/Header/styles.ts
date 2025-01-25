@@ -21,7 +21,7 @@ export const Header = styled.header`
   }
 `;
 
-export const LogoWrapper = styled.div`
+export const LogoWrapper = styled.button`
   background: transparent;
   border: none;
 `;

@@ -12,6 +12,14 @@ export const MovieListContainer = styled.section`
     font-size: 2rem;
     font-weight: bold;
     user-select: none;
+
+    @media (min-width: 435px) and (max-width: 767px) {
+      font-size: 1.8rem;
+    }
+
+    @media (max-width: 434px) {
+      font-size: 1.6rem;
+    }
   }
 `;
 
@@ -23,13 +31,14 @@ export const MovieList = styled.ul`
   grid-row-gap: 48px;
 
   @media (min-width: 768px) and (max-width: 1399px) {
-    grid-template-columns: repeat(3, 120px);
+    grid-template-columns: repeat(3, 140px);
+    grid-column-gap: 100px;
   }
 
   @media (min-width: 435px) and (max-width: 767px) {
-    grid-template-columns: repeat(2, 140px);
-    grid-column-gap: 80px;
-    grid-row-gap: 32px;
+    grid-template-columns: repeat(2, 150px);
+    grid-column-gap: 90px;
+    grid-row-gap: 45px;
   }
 
   @media (max-width: 434px) {
