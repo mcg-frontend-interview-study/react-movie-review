@@ -20,3 +20,8 @@ export const Header = styled.header`
     align-items: center;
   }
 `;
+
+export const LogoWrapper = styled.div`
+  background: transparent;
+  border: none;
+`;
