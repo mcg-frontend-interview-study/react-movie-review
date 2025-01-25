@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 
 export const Header = styled.header`
-  width: 100vw;
   height: 72px;
+  width: 99vw;
 
   display: flex;
   align-items: center;

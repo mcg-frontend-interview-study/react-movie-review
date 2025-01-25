@@ -11,9 +11,11 @@ const globalStyles = (theme: Theme) => css`
 
   body {
     font-size: 10px;
-    background-color: #ffa8b5;
+    background-color: #524f81;
     color: #fff;
     overflow-y: auto;
+    display: flex;
+    justify-content: center;
   }
 
   a {

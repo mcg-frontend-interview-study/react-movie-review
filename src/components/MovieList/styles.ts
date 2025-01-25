@@ -1,15 +1,14 @@
 import styled from '@emotion/styled';
 
 export const MovieListContainer = styled.section`
-  width: 100%;
-
   display: flex;
-  flex-direction: column;
+
   justify-content: center;
 
   margin: 0 auto;
 
   h2 {
+    margin-top: 2rem;
     font-size: 2rem;
     font-weight: bold;
     user-select: none;
