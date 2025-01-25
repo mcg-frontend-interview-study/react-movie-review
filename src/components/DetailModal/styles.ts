@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const ModalContainer = styled.article`
-  width: 50rem;
+  width: 45rem;
   height: 28rem;
 
   padding: 1rem 2rem;
@@ -14,7 +14,6 @@ export const ModalContainer = styled.article`
   left: 50%;
   transform: translate(-50%, -50%);
 
-  overflow-y: auto;
   z-index: 1000;
 `;
 
@@ -42,18 +41,22 @@ export const Header = styled.section`
 
 export const Content = styled.section`
   display: flex;
-  gap: 1rem;
+  gap: 1.5rem;
   justify-content: center;
+
+  position: relative;
 `;
 
 export const Poster = styled.img`
-  width: 40%;
-  height: 100%;
+  width: 35%;
+  height: 22rem;
 `;
 
 export const RightContent = styled.div`
   display: flex;
   flex-direction: column;
+
+  position: relative;
 `;
 
 export const ShortInfo = styled.div`
@@ -61,6 +64,7 @@ export const ShortInfo = styled.div`
   gap: 1rem;
   align-item: center;
 
+  margin-top: 1.2rem;
   margin-bottom: 2rem;
 `;
 
@@ -80,7 +84,14 @@ export const Rate = styled.article`
 `;
 export const Overview = styled.article`
   margin-bottom: 3rem;
-
-  max-height: 70%;
+  line-height: 1.3;
+  height: 10rem;
   overflow-y: auto;
+`;
+
+export const MyRatingWrapper = styled.div`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 `;

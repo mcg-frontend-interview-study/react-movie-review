@@ -43,7 +43,9 @@ const DetailModal = ({selectedMovieId, closeModal}: DetailModalProps) => {
 
               <S.Overview>{overview}</S.Overview>
 
-              <MyRating movieId={selectedMovieId} />
+              <S.MyRatingWrapper>
+                <MyRating movieId={selectedMovieId} />
+              </S.MyRatingWrapper>
             </S.RightContent>
           </S.Content>
         </S.ModalContainer>

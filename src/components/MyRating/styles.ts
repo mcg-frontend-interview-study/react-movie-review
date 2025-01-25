@@ -7,7 +7,7 @@ export const MyRating = styled.article`
   align-items: center;
 
   height: 5rem;
-  background-color: darkGray;
+  background-color: #292929;
   border-radius: 0.6rem;
 `;
 
