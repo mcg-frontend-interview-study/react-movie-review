@@ -53,7 +53,15 @@ line-height: 24px;
 text-align: left;
 text-underline-position: from-font;
 text-decoration-skip-ink: none;
-
+    `,
+    smallTitle: `
+font-family: Roboto;
+font-size: 28px;
+font-weight: 600;
+line-height: 36px;
+text-align: left;
+text-underline-position: from-font;
+text-decoration-skip-ink: none;
     `,
   },
 };

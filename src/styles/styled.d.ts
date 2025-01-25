@@ -14,6 +14,7 @@ declare module 'styled-components' {
       body: string;
       caption: string;
       button: string;
+      smallTitle: string;
     };
   }
 }

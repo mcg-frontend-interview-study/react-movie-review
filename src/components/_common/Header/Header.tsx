@@ -8,7 +8,7 @@ interface HeaderProps extends React.InputHTMLAttributes<HTMLInputElement> {
 }
 
 function Header({ searchKeyword, onSearch, ...rest }: HeaderProps) {
-  const isMobile = window.innerWidth <= DISPLAY_SIZE.mobile;
+  const isMobile = document.documentElement.clientWidth <= DISPLAY_SIZE.mobile;
 
   return isMobile ? (
     <MobileHeader searchKeyword={searchKeyword} onSearch={onSearch} {...rest} />

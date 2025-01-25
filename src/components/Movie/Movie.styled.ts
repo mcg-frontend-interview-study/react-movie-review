@@ -15,6 +15,11 @@ export const ContentLayout = styled.main`
   height: 100%;
 
   overflow: hidden;
+
+  ${media.mobile`
+      padding: 4rem 3.7rem;
+      min-width: ${DISPLAY_SIZE.min}px;
+    `}
 `;
 
 export const MovieListLayout = styled.div`
@@ -38,7 +43,9 @@ export const ItemList = styled.ul`
     `}
 
   ${media.tablet`
-      grid-template-columns: repeat(2, minmax(18.2rem, 1fr));
+      grid-template-columns: repeat(2, 1fr);
+      grid-column-gap: 3.2rem;
+      grid-row-gap: 3.2rem;
     `}
 `;
 
