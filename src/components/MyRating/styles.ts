@@ -30,4 +30,8 @@ export const RateNumber = styled.span`
 
 export const RateText = styled.span`
   width: 5rem;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;

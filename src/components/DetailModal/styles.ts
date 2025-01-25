@@ -15,6 +15,16 @@ export const ModalContainer = styled.article`
   transform: translate(-50%, -50%);
 
   z-index: 1000;
+
+  @media (max-width: 767px) {
+    width: 100%; /* 화면 전체 너비 */
+    height: 28rem; /* 콘텐츠 높이에 맞게 설정 */
+    bottom: 0; /* 화면 하단에 고정 */
+    top: auto; /* 상단 설정 제거 */
+    left: 0; /* 왼쪽 정렬 */
+    transform: none; /* 중앙 정렬 제거 */
+    border-radius: 1rem 1rem 0 0; /* 상단 모서리만 둥글게 */
+  }
 `;
 
 export const Header = styled.section`
@@ -50,6 +60,10 @@ export const Content = styled.section`
 export const Poster = styled.img`
   width: 35%;
   height: 22rem;
+
+  @media (max-width: 767px) {
+    display: none;
+  }
 `;
 
 export const RightContent = styled.div`
@@ -78,9 +92,6 @@ export const Rate = styled.article`
     width: 1rem;
     height: 1rem;
   }
-
-  span {
-  }
 `;
 export const Overview = styled.article`
   margin-bottom: 3rem;
@@ -94,4 +105,8 @@ export const MyRatingWrapper = styled.div`
   bottom: 0;
   left: 0;
   width: 100%;
+
+  @media (max-width: 767px) {
+    position: static;
+  }
 `;

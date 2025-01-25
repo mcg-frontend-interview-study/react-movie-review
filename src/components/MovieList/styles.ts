@@ -21,4 +21,20 @@ export const MovieList = styled.ul`
   grid-template-columns: repeat(4, 180px);
   grid-column-gap: 160px;
   grid-row-gap: 48px;
+
+  @media (min-width: 768px) and (max-width: 1399px) {
+    grid-template-columns: repeat(3, 120px);
+  }
+
+  @media (min-width: 435px) and (max-width: 767px) {
+    grid-template-columns: repeat(2, 140px);
+    grid-column-gap: 80px;
+    grid-row-gap: 32px;
+  }
+
+  @media (max-width: 434px) {
+    grid-template-columns: 1fr;
+    grid-column-gap: 0;
+    grid-row-gap: 24px;
+  }
 `;
