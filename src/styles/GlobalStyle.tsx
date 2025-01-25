@@ -157,6 +157,7 @@ html,
   }
   body {
     background-color: rgba(17, 17, 17, 1);
+    min-width: 48rem;
   }
   li {
     list-style: none;

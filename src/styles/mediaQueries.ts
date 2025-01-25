@@ -1,11 +1,12 @@
 import { css, type CSSObject, type Interpolation } from 'styled-components';
+import { DISPLAY_SIZE } from '../constants/displaySize';
 
 export type Breakpoints = 'mobile' | 'tablet' | 'desktop';
 
 export const breakpoints: Record<Breakpoints, string> = {
-  mobile: '@media (max-width: 480px)',
-  tablet: '@media (max-width: 768px)',
-  desktop: '@media (min-width: 481px)',
+  mobile: `@media (max-width: ${DISPLAY_SIZE.mobile})`,
+  tablet: `@media (max-width: ${DISPLAY_SIZE.tablet})`,
+  desktop: `@media (max-width: ${DISPLAY_SIZE.desktop})`,
 };
 
 const media = Object.entries(breakpoints).reduce((acc, [key, value]) => {

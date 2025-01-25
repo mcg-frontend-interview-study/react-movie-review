@@ -70,7 +70,7 @@ function MovieList({ keyword }: MovieListProps) {
   }, [hasNextPage, fetchNextPage, movieList]);
 
   return (
-    <>
+    <S.MovieListLayout>
       <S.ItemList>
         {movieList.map(movie => (
           <MovieItem movie={movie} key={movie.id} onClick={handleModalOpen} />
@@ -85,7 +85,7 @@ function MovieList({ keyword }: MovieListProps) {
           <MovieDetail movieId={selectedMovie} />
         </Modal>
       )}
-    </>
+    </S.MovieListLayout>
   );
 }
 

@@ -17,9 +17,10 @@ function MovieItem({ movie, onClick }: MovieItemProps) {
           alt={movie.title}
         />
         <S.ItemTitle>{movie.title}</S.ItemTitle>
-        <S.ItemScore>
-          <img src="./star_filled.png" alt="별점" /> {movie.vote_average}
-        </S.ItemScore>
+        <S.ItemScoreBox>
+          <S.ItemScore>{movie.vote_average} </S.ItemScore>
+          <S.StarImage src="./star_filled.png" alt="별점" />
+        </S.ItemScoreBox>
       </S.ItemCard>
     </li>
   );
