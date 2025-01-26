@@ -90,16 +90,10 @@ const MovieList = () => {
                 </>
               );
             })}
-
-          {/* {searchText && movies.length === 0 && <S.Message>검색 결과가 없습니다.</S.Message>} */}
         </S.MovieList>
       </div>
 
-      {selectedMovieId && (
-        <Suspense fallback={<div>loading...</div>}>
-          <DetailModal selectedMovieId={selectedMovieId} closeModal={closeModal} />
-        </Suspense>
-      )}
+      {selectedMovieId && <DetailModal selectedMovieId={selectedMovieId} closeModal={closeModal} />}
     </S.MovieListContainer>
   );
 };
