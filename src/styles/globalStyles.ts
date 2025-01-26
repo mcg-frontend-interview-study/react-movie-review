@@ -1,8 +1,8 @@
-import {css, Theme} from '@emotion/react';
+import {css} from '@emotion/react';
 
 import reset from './reset.ts';
 
-const globalStyles = (theme: Theme) => css`
+const globalStyles = () => css`
   ${reset()}
 
   * {
