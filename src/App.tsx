@@ -1,17 +1,26 @@
-import {Suspense} from 'react';
 import MovieList from './components/MovieList';
 import Header from './components/Header';
-import SkeletonMovieList from './components/skeleton/MovieList';
+import ErrorBoundary from './components/common/ErrorBoundary';
+import ErrorFallback from './components/common/ErrorFallback';
+import {QueryErrorResetBoundary} from '@tanstack/react-query';
 
 function App() {
   return (
-    <div style={AppStyle}>
-      <Header />
+    <>
+      <div style={AppStyle}>
+        <Header />
 
-      <main>
-        <MovieList />
-      </main>
-    </div>
+        <QueryErrorResetBoundary>
+          {({reset}) => (
+            <ErrorBoundary fallback={ErrorFallback} resetQueryError={reset}>
+              <main>
+                <MovieList />
+              </main>
+            </ErrorBoundary>
+          )}
+        </QueryErrorResetBoundary>
+      </div>
+    </>
   );
 }
 

@@ -1,5 +1,6 @@
 import {BASE_URL, POPULAR_MOVIE_URL, SEARCH_URL} from '../constants/movie';
 import {MovieDetail, MovieList} from '../types/movie';
+import {createApiErrorMessage} from '../utils/error';
 
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -21,9 +22,8 @@ export const getMovieList = async ({pageParam = 1}: {pageParam?: number}) => {
     },
   });
 
-  // TODO: 에러메세지 함수
   if (!response.ok) {
-    throw new Error('영화 목록 불러오는 도중 에러 발생');
+    throw new Error(createApiErrorMessage(response.status));
   }
 
   const data = await response.json();
@@ -55,7 +55,7 @@ export const getSearchedMovieList = async ({pageParam = 1, title}: GetSearchedMo
   });
 
   if (!response.ok) {
-    throw new Error('영화 목록 불러오는 도중 에러 발생');
+    throw new Error(createApiErrorMessage(response.status));
   }
 
   const data = await response.json();
@@ -78,7 +78,7 @@ export const getMovieDetail = async (movieId: number) => {
   });
 
   if (!response.ok) {
-    throw new Error('영화 상세 정보 불러오는 도중 에러 발생');
+    throw new Error(createApiErrorMessage(response.status));
   }
 
   const data = await response.json();
