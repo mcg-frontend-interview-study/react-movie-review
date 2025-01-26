@@ -4,16 +4,16 @@ import MovieItem from '../MovieItem';
 import useInfiniteScroll from '../../hooks/useInfiniteScroll';
 import {useAtomValue} from 'jotai';
 import {searchTextAtom} from '../../jotai/atoms';
-import {Suspense, useState} from 'react';
 import DetailModal from '../DetailModal';
 import SkeletonMovieList from '../skeleton/MovieList';
+import useMovieDetailModalState from '../../hooks/useMovieDetailModalState';
 
 const MovieList = () => {
-  const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
+  const {selectedMovieId, openModal, closeModal} = useMovieDetailModalState();
 
   const searchText = useAtomValue(searchTextAtom);
-  const {data, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage} = useGetList();
 
+  const {data, hasNextPage, fetchNextPage, isLoading, isFetchingNextPage} = useGetList();
   const movies = data ? data.pages.flatMap(page => page.results) : [];
 
   const lastElementRef = useInfiniteScroll({
@@ -21,8 +21,6 @@ const MovieList = () => {
     isLoading,
     isLastPage: !hasNextPage,
   });
-
-  const closeModal = () => setSelectedMovieId(null);
 
   const handleItemClick = (event: React.MouseEvent<HTMLUListElement>) => {
     event.preventDefault();
@@ -33,8 +31,7 @@ const MovieList = () => {
     const id = Number(listItem.id);
     const selectedItem = movies.find(item => item.id === id);
 
-    // 모달 열기
-    if (selectedItem) setSelectedMovieId(id);
+    if (selectedItem) openModal(id);
   };
 
   return (
