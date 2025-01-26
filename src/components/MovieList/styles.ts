@@ -47,3 +47,10 @@ export const MovieList = styled.ul`
     grid-row-gap: 24px;
   }
 `;
+
+export const Message = styled.p`
+  font-size: 1.2rem;
+  height: 85vh;
+  width: 100%;
+  margin-top: 2.5rem;
+`;

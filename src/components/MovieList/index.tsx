@@ -42,9 +42,10 @@ const MovieList = () => {
       <div style={{display: 'flex', justifyContent: 'center', flexDirection: 'column'}}>
         <h2>{searchText ? `"${searchText}" 검색 결과` : '지금 인기 있는 영화'}</h2>
 
+        {searchText && movies.length === 0 && <S.Message>검색 결과가 없습니다.</S.Message>}
+
         <S.MovieList onClick={handleItemClick}>
           {isLoading && <SkeletonMovieList />}
-
           {!isLoading &&
             movies.map((movie, index) => {
               const isLastMovie = index === movies.length - 1;
@@ -89,6 +90,8 @@ const MovieList = () => {
                 </>
               );
             })}
+
+          {/* {searchText && movies.length === 0 && <S.Message>검색 결과가 없습니다.</S.Message>} */}
         </S.MovieList>
       </div>
 

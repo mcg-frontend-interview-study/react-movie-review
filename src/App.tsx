@@ -6,21 +6,19 @@ import {QueryErrorResetBoundary} from '@tanstack/react-query';
 
 function App() {
   return (
-    <>
-      <div style={AppStyle}>
-        <Header />
+    <div style={AppStyle}>
+      <Header />
 
-        <QueryErrorResetBoundary>
-          {({reset}) => (
-            <ErrorBoundary fallback={ErrorFallback} resetQueryError={reset}>
-              <main>
-                <MovieList />
-              </main>
-            </ErrorBoundary>
-          )}
-        </QueryErrorResetBoundary>
-      </div>
-    </>
+      <QueryErrorResetBoundary>
+        {({reset}) => (
+          <ErrorBoundary fallback={ErrorFallback} resetQueryError={reset}>
+            <main>
+              <MovieList />
+            </main>
+          </ErrorBoundary>
+        )}
+      </QueryErrorResetBoundary>
+    </div>
   );
 }
 
