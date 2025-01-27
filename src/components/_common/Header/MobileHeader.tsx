@@ -31,9 +31,11 @@ function MobileHeader({ searchKeyword, onSearch, ...rest }: HeaderProps) {
 
   return (
     <S.Layout>
-      <S.LogoButton onClick={() => alert('Mobile Logo 클릭!')}>
-        <S.LogoImage src="./logo.png" />
-      </S.LogoButton>
+      <a href="https://chosim-dvlpr.github.io/react-movie-review/">
+        <S.LogoButton>
+          <S.LogoImage src="./logo.png" />
+        </S.LogoButton>
+      </a>
       <S.InputBox $isExpanded={isExpanded}>
         <S.Input
           {...rest}

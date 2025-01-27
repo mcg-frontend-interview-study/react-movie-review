@@ -8,9 +8,11 @@ interface HeaderProps extends React.InputHTMLAttributes<HTMLInputElement> {
 function LargeHeader({ searchKeyword, onSearch, ...rest }: HeaderProps) {
   return (
     <S.Layout>
-      <S.LogoButton onClick={() => alert('Large Logo Clicked')}>
-        <S.LogoImage src="./logo.png" />
-      </S.LogoButton>
+      <a href="https://chosim-dvlpr.github.io/react-movie-review/">
+        <S.LogoButton>
+          <S.LogoImage src="./logo.png" />
+        </S.LogoButton>
+      </a>
       <S.InputBox $isExpanded={true}>
         <S.Input
           {...rest}
