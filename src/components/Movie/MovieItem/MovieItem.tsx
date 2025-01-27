@@ -1,6 +1,7 @@
 import { Movie } from '../../../types/movie.type';
-
 import * as S from '../Movie.styled';
+import useImageLoader from '../../../hooks/useImageLoader';
+import SkeletonThumbnail from '../../_common/Skeleton/SkeletonThumbnail';
 
 interface MovieItemProps {
   movie: Movie;
@@ -8,14 +9,23 @@ interface MovieItemProps {
 }
 
 function MovieItem({ movie, onClick }: MovieItemProps) {
+  const { imageUrl, isImageLoaded, handleImageLoad } = useImageLoader(
+    movie.poster_path,
+  );
+
   return (
     <li key={movie.id} onClick={() => onClick(movie.id)}>
       <S.ItemCard>
-        <S.ItemThumbnail
-          src={`https://image.tmdb.org/t/p/w220_and_h330_face${movie.poster_path}`}
-          loading="lazy"
-          alt={movie.title}
-        />
+        {!isImageLoaded && !imageUrl && <SkeletonThumbnail />}
+        {imageUrl && (
+          <S.ItemThumbnail
+            src={imageUrl}
+            loading="lazy"
+            alt={movie.title}
+            onLoad={handleImageLoad}
+          />
+        )}
+
         <S.ItemTitle>{movie.title}</S.ItemTitle>
         <S.ItemScoreBox>
           <S.ItemScore>{movie.vote_average} </S.ItemScore>

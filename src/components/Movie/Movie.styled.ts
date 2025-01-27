@@ -32,14 +32,14 @@ export const MovieListLayout = styled.div`
 
 export const ItemList = styled.ul`
   display: grid;
-  grid-template-columns: repeat(4, minmax(18.2rem, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 6.4rem;
   grid-row-gap: 6.4rem;
 
   color: ${({ theme }) => theme.colors.white};
 
   ${media.desktop`
-      grid-template-columns: repeat(3, minmax(18.2rem, 1fr));
+      grid-template-columns: repeat(3, 1fr);
     `}
 
   ${media.tablet`
@@ -60,7 +60,10 @@ export const ItemCard = styled.div`
 export const ItemThumbnail = styled.img`
   border-radius: 8px;
   width: 100%;
+  aspect-ratio: 2 / 3;
   background-size: contain;
+
+  background-color: ${({ theme }) => theme.colors.white};
 
   &:hover {
     opacity: 0.8;

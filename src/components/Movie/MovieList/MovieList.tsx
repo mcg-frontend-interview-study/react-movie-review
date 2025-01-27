@@ -7,6 +7,7 @@ import * as S from '../Movie.styled';
 import MovieDetail from '../MovieDetail/MovieDetail';
 import MovieItem from '../MovieItem/MovieItem';
 import FetchTargetBox from '../../_common/FetchTargetBox/FetchTargetBox';
+import SkeletonColumn from '../../_common/Skeleton/SkeletonColumn';
 
 interface MovieListProps {
   keyword: string;
@@ -38,8 +39,13 @@ function MovieList({ keyword }: MovieListProps) {
 
   const activeQuery = queries.find(query => query.condition) || queries[0];
 
-  const { movieList, fetchNextPage, isFetchingNextPage, hasNextPage } =
-    activeQuery.hook(keyword);
+  const {
+    movieList,
+    fetchNextPage,
+    isFetchingNextPage,
+    hasNextPage,
+    isLoading,
+  } = activeQuery.hook(keyword);
 
   useEffect(() => {
     const options = {
@@ -72,6 +78,7 @@ function MovieList({ keyword }: MovieListProps) {
   return (
     <S.MovieListLayout>
       <S.ItemList>
+        {isLoading && <SkeletonColumn count={20} />}
         {movieList.map(movie => (
           <MovieItem movie={movie} key={movie.id} onClick={handleModalOpen} />
         ))}
