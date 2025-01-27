@@ -31,27 +31,51 @@ function MovieDetail({ movieId }: MovieDetailProps) {
 
   return (
     <S.Layout>
-      <S.TitleText>{movieDetail.title}</S.TitleText>
-      <S.TitleText>{movieDetail.overview}</S.TitleText>
-      <S.TitleText>{movieDetail.vote_average}</S.TitleText>
-      <S.TitleText>
-        {movieDetail.genres.flatMap(genre => genre.name).join(', ')}
-      </S.TitleText>
-      {[...Array(5)].map((_, index) => (
-        <S.StarImage
-          key={index}
-          src={
-            index < filledStars
-              ? './templates/star_filled.png'
-              : './templates/star_empty.png'
-          }
-          alt={index < filledStars ? 'filled star' : 'empty star'}
-          onClick={() => updateRating({ rating: (index + 1) * 2 })}
-          style={{ cursor: 'pointer' }}
+      <S.TitleBox>
+        <S.TitleText>{movieDetail.title}</S.TitleText>
+      </S.TitleBox>
+
+      <S.ContentBox>
+        <S.ThumbnailImage
+          src={`https://image.tmdb.org/t/p/w220_and_h330_face${movieDetail.poster_path}`}
         />
-      ))}
-      <S.Rating>{rating}</S.Rating>
-      <S.Rating>{RATING_TEXT(rating)}</S.Rating>
+
+        <S.DetailBox>
+          <S.DetailContentBox>
+            <S.DetailHeaderBox>
+              <S.CaptionText>
+                {movieDetail.genres.flatMap(genre => genre.name).join(', ')}
+              </S.CaptionText>
+              <S.StarImage src="./star_filled.png" alt="별점" />
+              <S.CaptionText>{movieDetail.vote_average}</S.CaptionText>
+            </S.DetailHeaderBox>
+            <S.OverviewText>{movieDetail.overview}</S.OverviewText>
+          </S.DetailContentBox>
+
+          <S.DetailVoteBox>
+            <S.CaptionBoldText>내 별점</S.CaptionBoldText>
+            <S.StarImageVoteBox>
+              {[...Array(5)].map((_, index) => (
+                <S.StarImage
+                  key={index}
+                  src={
+                    index < filledStars
+                      ? './star_filled.png'
+                      : './star_empty.png'
+                  }
+                  alt={index < filledStars ? 'filled star' : 'empty star'}
+                  onClick={() => updateRating({ rating: (index + 1) * 2 })}
+                  style={{ cursor: 'pointer' }}
+                />
+              ))}
+            </S.StarImageVoteBox>
+            <S.CaptionText>{rating !== 0 && rating}</S.CaptionText>
+            <S.RatingDescriptionText>
+              {RATING_TEXT(rating)}
+            </S.RatingDescriptionText>
+          </S.DetailVoteBox>
+        </S.DetailBox>
+      </S.ContentBox>
     </S.Layout>
   );
 }

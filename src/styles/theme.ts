@@ -6,6 +6,7 @@ export const theme: DefaultTheme = {
     white: 'rgba(255, 255, 255, 1)',
     greyScale1: 'rgba(208, 213, 221, 1)',
     greyScale2: 'rgba(56, 56, 57, 1)',
+    greyScale3: 'rgba(33, 33, 34, 1)',
   },
   font: {
     title: `

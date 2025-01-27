@@ -7,6 +7,7 @@ declare module 'styled-components' {
       white: string;
       greyScale1: string;
       greyScale2: string;
+      greyScale3: string;
     };
     font: {
       title: string;

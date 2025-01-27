@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import media from '../../../styles/mediaQueries';
 
 export const Backdrop = styled.div`
   position: absolute;
@@ -26,11 +27,27 @@ export const ContentLayout = styled.div`
   left: 50%;
   transform: translate(-50%, -50%);
 
-  width: 100%;
-  height: 100%;
-  max-width: 82.6rem;
-  max-height: 57.7rem;
+  width: 82.6rem;
+  height: 57.7rem;
+
+  border-radius: 0.8rem;
+  overflow: hidden;
 
   color: ${({ theme }) => theme.colors.white};
-  background-color: ${({ theme }) => theme.colors.greyScale2};
+  background-color: ${({ theme }) => theme.colors.greyScale3};
+
+  ${media.desktop`
+      width: 74rem;
+      height: 54.4rem;
+    `}
+
+  ${media.tablet`
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      transform: translate(-50%);
+
+      width: 100%;
+      height: 50%;
+    `}
 `;

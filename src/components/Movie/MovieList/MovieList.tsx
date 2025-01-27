@@ -81,7 +81,7 @@ function MovieList({ keyword }: MovieListProps) {
       )}
 
       {isOpenModal && (
-        <Modal onClose={() => closeModal('movie')} isOpen={isOpenModal}>
+        <Modal onClose={() => closeModal('movie')} isOpen={true}>
           <MovieDetail movieId={selectedMovie} />
         </Modal>
       )}
