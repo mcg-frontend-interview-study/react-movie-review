@@ -1,5 +1,4 @@
 import * as S from './Skeleton.styled';
-import SkeletonThumbnail from './SkeletonThumbnail';
 
 interface SkeletonColumnProps {
   count: number;
@@ -12,7 +11,7 @@ function SkeletonColumn({ count }: SkeletonColumnProps) {
         <li key={index}>
           <a href="#">
             <S.SkeletonCard>
-              <SkeletonThumbnail />
+              <S.SkeletonThumbnail />
               <S.SkeletonTitle />
               <S.SkeletonScore />
             </S.SkeletonCard>
