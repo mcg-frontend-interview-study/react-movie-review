@@ -7,6 +7,12 @@ import {useModalContext} from '@utils/ModalContext';
 export const Modal = ({children}: React.PropsWithChildren) => {
   const {isModalOpen, handleModalClose} = useModalContext();
 
+  if (isModalOpen) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = 'auto';
+  }
+
   return (
     isModalOpen &&
     createPortal(
