@@ -38,12 +38,12 @@ export const ItemDetail = ({selectedId}: ItemDetailProps) => {
   const onClick = (event: React.MouseEvent<HTMLFieldSetElement, MouseEvent>) => {
     const getScore = Number((event.target as HTMLElement).closest('svg')?.id);
 
-    if (selectedId) {
-      if (id === -1) {
-        postMovieScore({id: selectedId, vote: getScore});
-      } else {
-        patchMovieScore({id: selectedId, vote: getScore});
-      }
+    if (!selectedId) return;
+
+    if (id === -1) {
+      postMovieScore({id: selectedId, vote: getScore});
+    } else {
+      patchMovieScore({id: selectedId, vote: getScore});
     }
   };
 
