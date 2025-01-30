@@ -5,11 +5,7 @@ interface TitleProps {
 }
 
 function Title({ content }: TitleProps) {
-  return (
-    <>
-      <S.TitleText>{content}</S.TitleText>
-    </>
-  );
+  return <S.TitleText>{content}</S.TitleText>;
 }
 
 export default Title;
