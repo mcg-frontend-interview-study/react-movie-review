@@ -152,6 +152,11 @@ const globalStyle = css`
   *:focus {
     outline: none;
   }
+
+  ::-webkit-scrollbar {
+    display: 'none';
+    width: 0;
+  }
 `;
 
 export const GlobalStyle = () => <Global styles={globalStyle} />;
