@@ -56,7 +56,7 @@ export const ItemDetail = ({selectedId}: ItemDetailProps) => {
       <header css={detailHeaderStyle}>
         <h2 css={h2Style(theme)}>{detail?.title}</h2>
       </header>
-      <div css={detailBodyStyle}>
+      <figure css={detailBodyStyle}>
         <img css={posterStyle} src={import.meta.env.VITE_IMAGE_URL_PREFIX + detail?.poster_path} />
         <article css={detailContentStyle}>
           <figcaption css={movieSummaryStyle}>
@@ -76,7 +76,7 @@ export const ItemDetail = ({selectedId}: ItemDetailProps) => {
             <p css={pStyle(theme)}>{SCORE_TEXT[vote]}</p>
           </aside>
         </article>
-      </div>
+      </figure>
     </section>
   );
 };
