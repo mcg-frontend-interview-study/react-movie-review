@@ -1,3 +1,4 @@
+import { TMDB } from '../../../constants/url';
 import useMovie from '../../../queries/useMovie';
 import useRating from '../../../queries/useRating';
 import useUpdateStars from '../../../queries/useUpdateStars';
@@ -38,7 +39,7 @@ function MovieDetail({ movieId }: MovieDetailProps) {
 
       <S.ContentBox>
         <S.ThumbnailImage
-          src={`https://image.tmdb.org/t/p/w220_and_h330_face${movieDetail.poster_path}`}
+          src={`${TMDB.POSTER_PATH}${movieDetail.poster_path}`}
         />
 
         <S.DetailBox>
@@ -59,17 +60,19 @@ function MovieDetail({ movieId }: MovieDetailProps) {
             <S.CaptionBoldText>토스트 확인을 위한 별점</S.CaptionBoldText>
             <S.StarImageVoteBox>
               {[...Array(5)].map((_, index) => (
-                <S.StarImage
-                  key={index}
-                  src={
-                    index < filledStars
-                      ? './star_filled.png'
-                      : './star_empty.png'
-                  }
-                  alt={index < filledStars ? 'filled star' : 'empty star'}
+                <button
                   onClick={() => errorUpdateRating({ rating: (index + 1) * 2 })}
-                  style={{ cursor: 'pointer' }}
-                />
+                >
+                  <S.StarImage
+                    key={index}
+                    src={
+                      index < filledStars
+                        ? './star_filled.png'
+                        : './star_empty.png'
+                    }
+                    alt={index < filledStars ? 'filled star' : 'empty star'}
+                  />
+                </button>
               ))}
             </S.StarImageVoteBox>
             <S.CaptionText>{rating !== 0 && rating}</S.CaptionText>
@@ -79,17 +82,19 @@ function MovieDetail({ movieId }: MovieDetailProps) {
             <S.CaptionBoldText>내 별점</S.CaptionBoldText>
             <S.StarImageVoteBox>
               {[...Array(5)].map((_, index) => (
-                <S.StarImage
-                  key={index}
-                  src={
-                    index < filledStars
-                      ? './star_filled.png'
-                      : './star_empty.png'
-                  }
-                  alt={index < filledStars ? 'filled star' : 'empty star'}
+                <button
                   onClick={() => updateRating({ rating: (index + 1) * 2 })}
-                  style={{ cursor: 'pointer' }}
-                />
+                >
+                  <S.StarImage
+                    key={index}
+                    src={
+                      index < filledStars
+                        ? './star_filled.png'
+                        : './star_empty.png'
+                    }
+                    alt={index < filledStars ? 'filled star' : 'empty star'}
+                  />
+                </button>
               ))}
             </S.StarImageVoteBox>
             <S.CaptionText>{rating !== 0 && rating}</S.CaptionText>
