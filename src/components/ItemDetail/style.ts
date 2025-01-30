@@ -1,6 +1,6 @@
 import {css, Theme} from '@emotion/react';
 
-export const detailContainerStyle = (backdropPath: string) =>
+export const detailContainerStyle = (backdropPath?: string) =>
   css({
     position: 'relative',
     height: '100%',
@@ -8,7 +8,7 @@ export const detailContainerStyle = (backdropPath: string) =>
     backgroundSize: 'cover',
     border: 'none',
     borderRadius: '8px',
-    backgroundImage: `url(${import.meta.env.VITE_IMAGE_URL_PREFIX + backdropPath})`,
+    backgroundImage: `url(${backdropPath && import.meta.env.VITE_IMAGE_URL_PREFIX + backdropPath})`,
     '&::before': {
       content: '""',
       position: 'absolute',
@@ -49,7 +49,7 @@ export const detailBodyStyle = css({
 });
 
 export const posterStyle = css({
-  width: '40%',
+  width: '267px',
   height: '400px',
   '@media (max-width: 833px)': {
     display: 'none',
@@ -87,7 +87,24 @@ export const outlineStyle = css({
 
 export const overviewStyle = (theme: Theme) => [
   css({
+    height: '240px',
+    overflowY: 'scroll',
+    '::-webkit-scrollbar': {
+      width: '4px',
+    },
+
+    '::-webkit-scrollbar-track': {
+      background: '#f1f1f1',
+      borderRadius: '10px',
+    },
+
+    '::-webkit-scrollbar-thumb': {
+      background: '#888',
+      borderRadius: '10px',
+    },
+
     '@media (max-width: 833px)': {
+      height: '100%',
       whiteSpace: 'normal',
       display: '-webkit-box',
       WebkitLineClamp: 4,

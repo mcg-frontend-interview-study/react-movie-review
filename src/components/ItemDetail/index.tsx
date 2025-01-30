@@ -19,6 +19,7 @@ import {useGetMovieScore} from '@hooks/query/useGetMovieScore';
 import {usePostMovieScore} from '@hooks/mutation/usePostMovieScore';
 import {usePatchMovieScore} from '@hooks/mutation/usePatchMovieScore';
 import {useTheme} from '@emotion/react';
+import {Image} from '@components/Image';
 
 type ItemDetailProps = {
   selectedId: number | null;
@@ -51,13 +52,15 @@ export const ItemDetail = ({selectedId}: ItemDetailProps) => {
     }
   };
 
+  const imagePath = detail && import.meta.env.VITE_IMAGE_URL_PREFIX + detail.poster_path;
+
   return (
     <section css={detailContainerStyle(detail?.backdrop_path ?? '')}>
       <header css={detailHeaderStyle}>
         <h2 css={h2Style(theme)}>{detail?.title}</h2>
       </header>
       <figure css={detailBodyStyle}>
-        <img css={posterStyle} src={import.meta.env.VITE_IMAGE_URL_PREFIX + detail?.poster_path} />
+        <Image css={posterStyle} src={imagePath} alt={detail?.title} />
         <article css={detailContentStyle}>
           <figcaption css={movieSummaryStyle}>
             <div css={outlineStyle}>
