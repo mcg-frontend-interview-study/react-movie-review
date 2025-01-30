@@ -1,15 +1,12 @@
-import {useEffect} from 'react';
+import {useEffect, useRef} from 'react';
 
-type ClickOutsideDetectorProps<T extends HTMLElement> = React.PropsWithChildren & {
-  targetRef: React.RefObject<T>;
+type ClickOutsideDetectorProps = React.ComponentProps<'div'> & {
   onClickOutside: () => void;
 };
 
-export const ClickOutsideDetector = <T extends HTMLElement>({
-  targetRef,
-  onClickOutside,
-  children,
-}: ClickOutsideDetectorProps<T>) => {
+export const ClickOutsideDetector = ({onClickOutside, children, ...divProps}: ClickOutsideDetectorProps) => {
+  const targetRef = useRef<HTMLDivElement>(null);
+
   useEffect(
     function addEventListenerForDetectClickOutside() {
       const handleClickOutside = (event: MouseEvent) => {
@@ -29,5 +26,9 @@ export const ClickOutsideDetector = <T extends HTMLElement>({
     [onClickOutside, targetRef],
   );
 
-  return children;
+  return (
+    <div ref={targetRef} {...divProps}>
+      {children}
+    </div>
+  );
 };
