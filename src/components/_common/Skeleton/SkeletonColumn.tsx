@@ -9,13 +9,11 @@ function SkeletonColumn({ count }: SkeletonColumnProps) {
     <>
       {Array.from({ length: count }, (_, index) => (
         <li key={index}>
-          <a href="#">
-            <S.SkeletonCard>
-              <S.SkeletonThumbnail />
-              <S.SkeletonTitle />
-              <S.SkeletonScore />
-            </S.SkeletonCard>
-          </a>
+          <S.SkeletonCard>
+            <S.SkeletonThumbnail />
+            <S.SkeletonTitle />
+            <S.SkeletonScore />
+          </S.SkeletonCard>
         </li>
       ))}
     </>
