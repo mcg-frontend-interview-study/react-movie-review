@@ -7,6 +7,7 @@ import { theme } from './styles/theme.ts';
 import GlobalStyle from './styles/GlobalStyle.tsx';
 import { ModalProvider } from './contexts/ModalContext.tsx';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { ToastProvider } from './contexts/ToastContext.tsx';
 
 export const queryClient = new QueryClient({
   defaultOptions: {
@@ -39,12 +40,14 @@ enableMocking().then(() => {
       <QueryClientProvider client={queryClient}>
         <ReactQueryDevtools />
         <ThemeProvider theme={theme}>
-          <Suspense fallback={<>로딩 중</>}>
-            <ModalProvider>
-              <GlobalStyle />
-              <App />
-            </ModalProvider>
-          </Suspense>
+          <ToastProvider>
+            <Suspense fallback={<>로딩 중</>}>
+              <ModalProvider>
+                <GlobalStyle />
+                <App />
+              </ModalProvider>
+            </Suspense>
+          </ToastProvider>
         </ThemeProvider>
       </QueryClientProvider>
     </React.StrictMode>,

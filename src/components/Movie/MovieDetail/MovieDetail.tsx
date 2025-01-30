@@ -26,6 +26,7 @@ function MovieDetail({ movieId }: MovieDetailProps) {
   const { movieDetail } = useMovie(movieId);
   const { rating } = useRating(movieId);
   const { updateRating } = useUpdateStars(movieId);
+  const { updateRating: errorUpdateRating } = useUpdateStars(1);
 
   const filledStars = Math.floor(rating / 2);
 
@@ -51,6 +52,26 @@ function MovieDetail({ movieId }: MovieDetailProps) {
             </S.DetailHeaderBox>
             <S.OverviewText>{movieDetail.overview}</S.OverviewText>
           </S.DetailContentBox>
+
+          <S.DetailVoteBox>
+            <S.CaptionBoldText>토스트 확인을 위한 별점</S.CaptionBoldText>
+            <S.StarImageVoteBox>
+              {[...Array(5)].map((_, index) => (
+                <S.StarImage
+                  key={index}
+                  src={
+                    index < filledStars
+                      ? './star_filled.png'
+                      : './star_empty.png'
+                  }
+                  alt={index < filledStars ? 'filled star' : 'empty star'}
+                  onClick={() => errorUpdateRating({ rating: (index + 1) * 2 })}
+                  style={{ cursor: 'pointer' }}
+                />
+              ))}
+            </S.StarImageVoteBox>
+            <S.CaptionText>{rating !== 0 && rating}</S.CaptionText>
+          </S.DetailVoteBox>
 
           <S.DetailVoteBox>
             <S.CaptionBoldText>내 별점</S.CaptionBoldText>

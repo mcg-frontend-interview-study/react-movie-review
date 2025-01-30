@@ -23,6 +23,14 @@ export const handlers = [
 
     const movieData = mockRatings.find(movie => movie.id === movieId);
 
+    // ⭐ movieId가 1이면 임의로 500 에러 발생
+    if (movieId === 1) {
+      return new HttpResponse(null, {
+        status: 500,
+        statusText: 'Internal Server Error',
+      });
+    }
+
     if (movieData) {
       movieData.rating = rating;
       return HttpResponse.json(movieData.rating);
