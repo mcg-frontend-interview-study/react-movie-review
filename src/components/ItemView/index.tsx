@@ -1,9 +1,9 @@
 import {h2Style, itemViewStyle} from './style';
 import {Suspense} from 'react';
-import {ItemSkeleton} from '@components/ItemList/ItemSkeleton';
 import {useSearchContext} from '@utils/SearchContext';
 import {PopularList} from '@components/PopularList';
 import {SearchList} from '@components/SearchList';
+import {Loading} from '@components/Loading';
 
 export const ItemView = () => {
   const {keyword} = useSearchContext();
@@ -14,7 +14,7 @@ export const ItemView = () => {
   return (
     <main css={itemViewStyle}>
       <h2 css={h2Style}>{headerText}</h2>
-      <Suspense fallback={<ItemSkeleton />}>{isPopular ? <PopularList /> : <SearchList keyword={keyword} />}</Suspense>
+      <Suspense fallback={<Loading />}>{isPopular ? <PopularList /> : <SearchList keyword={keyword} />}</Suspense>
     </main>
   );
 };
