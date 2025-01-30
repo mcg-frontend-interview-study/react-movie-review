@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import * as S from './Modal.styled';
 import useEscapeKey from '../../../hooks/useEscapeKey';
 import ModalBackdrop from './ModalBackdrop';
+import SkeletonModal from '../Skeleton/SkeletonModal';
 
 interface ModalProps {
   isOpen: boolean;
@@ -40,7 +41,7 @@ const Modal = ({ children, isOpen, onClose }: ModalProps) => {
         $isRender={isRender && isOpen}
         $animationTime={ANIMATION_DURATION_TIME}
       >
-        <Suspense fallback={<>로딩 중</>}>{children}</Suspense>
+        <Suspense fallback={<SkeletonModal />}>{children}</Suspense>
       </S.ContentLayout>
     </S.Layout>
   );

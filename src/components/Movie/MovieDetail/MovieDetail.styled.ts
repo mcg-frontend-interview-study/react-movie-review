@@ -105,12 +105,14 @@ export const StarImageVoteBox = styled.div`
   flex-direction: row;
 `;
 
+export const ThumbnailImageBox = styled.div`
+  width: 29.2rem;
+  height: 43.3rem;
+`;
+
 // Image
 
 export const ThumbnailImage = styled.img`
-  width: 29.2rem;
-  height: 43.3rem;
-
   ${media.desktop`
       width: 26rem;
       height: 40rem;

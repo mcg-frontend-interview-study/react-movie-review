@@ -10,7 +10,7 @@ function SkeletonColumn({ count }: SkeletonColumnProps) {
       {Array.from({ length: count }, (_, index) => (
         <li key={index}>
           <S.SkeletonCard>
-            <S.SkeletonThumbnail />
+            <S.SkeletonThumbnail $width="full" />
             <S.SkeletonTitle />
             <S.SkeletonScore />
           </S.SkeletonCard>

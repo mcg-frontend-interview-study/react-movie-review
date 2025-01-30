@@ -18,8 +18,8 @@ export const SkeletonCard = styled.div`
   gap: 16px;
 `;
 
-export const SkeletonThumbnail = styled.div`
-  width: 100%;
+export const SkeletonThumbnail = styled.div<{ $width: 'full' | 'half' }>`
+  width: ${({ $width }) => ($width === 'full' ? '100%' : '29.2rem')};
   aspect-ratio: 2 / 3;
   border-radius: 8px;
   background: linear-gradient(-90deg, #aaa, #f0f0f0, #aaa, #f0f0f0);
@@ -43,4 +43,17 @@ export const SkeletonScore = styled.div`
   background: linear-gradient(-90deg, #aaa, #f0f0f0, #aaa, #f0f0f0);
   background-size: 400%;
   animation: ${skeletonAnimation} 5s infinite ease-out;
+`;
+
+export const SkeletonModal = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 5rem 3.2rem;
+`;
+
+export const SkeletonContentBox = styled.div`
+  width: 55%;
 `;

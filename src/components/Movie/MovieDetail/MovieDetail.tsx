@@ -30,7 +30,6 @@ function MovieDetail({ movieId }: MovieDetailProps) {
   const { updateRating: errorUpdateRating } = useUpdateStars(1);
 
   const filledStars = Math.floor(rating / 2);
-
   return (
     <S.Layout>
       <S.TitleBox>
@@ -38,9 +37,11 @@ function MovieDetail({ movieId }: MovieDetailProps) {
       </S.TitleBox>
 
       <S.ContentBox>
-        <S.ThumbnailImage
-          src={`${TMDB.POSTER_PATH}${movieDetail.poster_path}`}
-        />
+        <S.ThumbnailImageBox>
+          <S.ThumbnailImage
+            src={`${TMDB.POSTER_PATH}${movieDetail.poster_path}`}
+          />
+        </S.ThumbnailImageBox>
 
         <S.DetailBox>
           <S.DetailContentBox>
