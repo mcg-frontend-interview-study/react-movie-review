@@ -15,7 +15,8 @@ export const ItemList = ({movieList}: ItemListProps) => {
   const [id, setId] = useState<number | null>(null);
 
   const getMovieId = (event: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    const targetId = (event.target as HTMLElement).closest('li')?.id;
+    if (!(event.target instanceof HTMLElement)) return;
+    const targetId = event.target.closest('li')?.id;
 
     if (targetId) {
       setId(Number(targetId));
