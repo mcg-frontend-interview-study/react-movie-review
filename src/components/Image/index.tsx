@@ -6,8 +6,6 @@ type ImageProps = React.ComponentProps<'img'>;
 export const Image = ({width, height, src, alt, ...imgProps}: ImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
 
-  console.log(isLoaded);
-
   return (
     <div css={containerStyle}>
       <img src={src} alt={alt} {...imgProps} onLoad={() => setIsLoaded(true)} />
