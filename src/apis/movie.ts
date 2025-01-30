@@ -7,7 +7,7 @@ export const getPopularMovieList = async (page: number) => {
   const response = await http.get<ResponseMoviePagination>({
     endpoint: ENDPOINTS.popularMovies,
     params: {
-      language: 'ko-kr',
+      language: navigator.language ?? 'ko-kr',
       page,
     },
   });
@@ -19,7 +19,7 @@ export const getMatchedMovieList = async (page: number, query: string) => {
   const response = await http.get<ResponseMoviePagination>({
     endpoint: ENDPOINTS.matchedMovies,
     params: {
-      language: 'ko-kr',
+      language: navigator.language ?? 'ko-kr',
       page,
       query,
     },
@@ -32,7 +32,7 @@ export const getMovieDetail = async (id: number) => {
   const response = await http.get<ResponseMovieDetail>({
     endpoint: `${ENDPOINTS.movieDetail}/${id}`,
     params: {
-      language: 'ko-kr',
+      language: navigator.language ?? 'ko-kr',
     },
   });
 
