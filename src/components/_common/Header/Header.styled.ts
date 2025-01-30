@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import media from '../../../styles/mediaQueries';
 
-export const Layout = styled.div`
+export const Layout = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
