@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes, css } from 'styled-components';
 import media from '../../../styles/mediaQueries';
 
 export const Backdrop = styled.div`
@@ -21,7 +21,28 @@ export const Layout = styled.div`
   height: 100%;
 `;
 
-export const ContentLayout = styled.div`
+const slideIn = keyframes({
+  from: {
+    opacity: 0,
+  },
+  to: {
+    opacity: 1,
+  },
+});
+
+const slideOut = keyframes({
+  from: {
+    opacity: 1,
+  },
+  to: {
+    opacity: 0,
+  },
+});
+
+export const ContentLayout = styled.div<{
+  $isRender: boolean;
+  $animationTime: number;
+}>`
   position: absolute;
   top: 50%;
   left: 50%;
@@ -35,6 +56,12 @@ export const ContentLayout = styled.div`
 
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.greyScale3};
+
+  ${({ $isRender, $animationTime }) =>
+    css`
+      animation: ${$isRender ? slideIn : slideOut} ${$animationTime + 1}ms
+        ease-in;
+    `}
 
   ${media.desktop`
       width: 74rem;

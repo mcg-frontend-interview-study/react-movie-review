@@ -35,15 +35,11 @@ const Modal = ({ children, isOpen, onClose }: ModalProps) => {
 
   const modalLayout = (
     <S.Layout>
-      {/* // <S.Layout[isRender && isOpen ? 'isOpening' : 'isClosing']}
-      style={
-        {
-          '--animation-duration': `${ANIMATION_DURATION_TIME + 1}ms`,
-        } as React.CSSProperties
-      }
-    > */}
       <ModalBackdrop onClick={onClose} />
-      <S.ContentLayout>
+      <S.ContentLayout
+        $isRender={isRender && isOpen}
+        $animationTime={ANIMATION_DURATION_TIME}
+      >
         <Suspense fallback={<>로딩 중</>}>{children}</Suspense>
       </S.ContentLayout>
     </S.Layout>

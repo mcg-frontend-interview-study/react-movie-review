@@ -87,11 +87,9 @@ function MovieList({ keyword }: MovieListProps) {
         <FetchTargetBox ref={nextFetchTargetRef} />
       )}
 
-      {isOpenModal && (
-        <Modal onClose={() => closeModal('movie')} isOpen={true}>
-          <MovieDetail movieId={selectedMovie} />
-        </Modal>
-      )}
+      <Modal onClose={() => closeModal('movie')} isOpen={isOpenModal}>
+        <MovieDetail movieId={selectedMovie} />
+      </Modal>
     </S.MovieListLayout>
   );
 }
