@@ -13,11 +13,11 @@ export const StarRating = ({value, onClick}: StarRatingProps) => {
   return (
     <fieldset css={containerStyle} onClick={onClick}>
       {SCORE.map((score, index) => {
-        if (value >= score) {
-          return <StarFilled key={index} id={score.toString()} style={{cursor: 'pointer'}} />;
-        } else {
-          return <StarEmpty key={index} id={score.toString()} style={{cursor: 'pointer'}} />;
-        }
+        return value >= score ? (
+          <StarFilled key={index} id={score.toString()} style={{cursor: 'pointer'}} />
+        ) : (
+          <StarEmpty key={index} id={score.toString()} style={{cursor: 'pointer'}} />
+        );
       })}
     </fieldset>
   );
