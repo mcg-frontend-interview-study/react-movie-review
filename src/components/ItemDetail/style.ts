@@ -1,4 +1,4 @@
-import {css} from '@emotion/react';
+import {css, Theme} from '@emotion/react';
 
 export const detailContainerStyle = (backdropPath: string) =>
   css({
@@ -28,6 +28,16 @@ export const detailHeaderStyle = css({
   marginBottom: 0,
   backgroundColor: 'transparent',
 });
+
+export const h2Style = (theme: Theme) =>
+  css({
+    ...theme.typography.subtitle,
+  });
+
+export const pStyle = (theme: Theme) =>
+  css({
+    ...theme.typography.body,
+  });
 
 export const detailBodyStyle = css({
   display: 'flex',
@@ -59,11 +69,14 @@ export const movieSummaryStyle = css({
   rowGap: '16px',
 });
 
-export const voteAverageStyle = css({
-  display: 'flex',
-  alignItems: 'center',
-  gap: 8,
-});
+export const voteAverageStyle = (theme: Theme) => [
+  css({
+    display: 'flex',
+    alignItems: 'center',
+    gap: 8,
+  }),
+  pStyle(theme),
+];
 
 export const outlineStyle = css({
   display: 'flex',
@@ -72,15 +85,18 @@ export const outlineStyle = css({
   columnGap: '16px',
 });
 
-export const overviewStyle = css({
-  '@media (max-width: 833px)': {
-    whiteSpace: 'normal',
-    display: '-webkit-box',
-    WebkitLineClamp: 4,
-    WebkitBoxOrient: 'vertical',
-    overflow: 'hidden',
-  },
-});
+export const overviewStyle = (theme: Theme) => [
+  css({
+    '@media (max-width: 833px)': {
+      whiteSpace: 'normal',
+      display: '-webkit-box',
+      WebkitLineClamp: 4,
+      WebkitBoxOrient: 'vertical',
+      overflow: 'hidden',
+    },
+  }),
+  pStyle(theme),
+];
 
 export const voteMyRateStyle = css({
   display: 'flex',

@@ -1,7 +1,8 @@
 import {Main} from './pages/Main';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {GlobalStyle} from './styles/GlobalStyle';
-import './index.css';
+import {ThemeProvider} from '@emotion/react';
+import {theme} from '@styles/theme';
 
 export const App = () => {
   const queryClient = new QueryClient({
@@ -16,8 +17,10 @@ export const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <GlobalStyle />
-      <Main />
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <Main />
+      </ThemeProvider>
     </QueryClientProvider>
   );
 };

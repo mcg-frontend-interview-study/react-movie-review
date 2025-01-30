@@ -3,10 +3,12 @@ import {
   detailContainerStyle,
   detailContentStyle,
   detailHeaderStyle,
+  h2Style,
   movieSummaryStyle,
   outlineStyle,
   overviewStyle,
   posterStyle,
+  pStyle,
   voteAverageStyle,
   voteMyRateStyle,
 } from './style';
@@ -16,6 +18,7 @@ import {StarRating} from '@components/StarRating';
 import {useGetMovieScore} from '@hooks/query/useGetMovieScore';
 import {usePostMovieScore} from '@hooks/mutation/usePostMovieScore';
 import {usePatchMovieScore} from '@hooks/mutation/usePatchMovieScore';
+import {useTheme} from '@emotion/react';
 
 type ItemDetailProps = {
   selectedId: number | null;
@@ -34,6 +37,7 @@ export const ItemDetail = ({selectedId}: ItemDetailProps) => {
   const {id, vote} = useGetMovieScore(selectedId);
   const {postMovieScore} = usePostMovieScore();
   const {patchMovieScore} = usePatchMovieScore();
+  const theme = useTheme();
 
   const onClick = (event: React.MouseEvent<HTMLFieldSetElement, MouseEvent>) => {
     const getScore = Number((event.target as HTMLElement).closest('svg')?.id);
@@ -50,28 +54,26 @@ export const ItemDetail = ({selectedId}: ItemDetailProps) => {
   return (
     <section css={detailContainerStyle(detail?.backdrop_path ?? '')}>
       <header css={detailHeaderStyle}>
-        <h2 className="text-subtitle">{detail?.title}</h2>
+        <h2 css={h2Style(theme)}>{detail?.title}</h2>
       </header>
       <div css={detailBodyStyle}>
         <img css={posterStyle} src={import.meta.env.VITE_IMAGE_URL_PREFIX + detail?.poster_path} />
         <article css={detailContentStyle}>
           <figcaption css={movieSummaryStyle}>
             <div css={outlineStyle}>
-              <p className="text-body">{detail?.genres.map(genre => genre.name).join(', ')}</p>
-              <div css={voteAverageStyle} className="text-body">
+              <p css={pStyle(theme)}>{detail?.genres.map(genre => genre.name).join(', ')}</p>
+              <div css={voteAverageStyle(theme)}>
                 <StarFilled />
                 {detail?.vote_average}
               </div>
             </div>
-            <p css={overviewStyle} className="text-body">
-              {detail?.overview}
-            </p>
+            <p css={overviewStyle(theme)}>{detail?.overview}</p>
           </figcaption>
           <aside css={voteMyRateStyle}>
-            <p className="text-body">내 별점</p>
+            <p css={pStyle(theme)}>내 별점</p>
             <StarRating value={vote} onClick={onClick} />
-            <p className="text-body">{vote}</p>
-            <p className="text-body">{SCORE_TEXT[vote]}</p>
+            <p css={pStyle(theme)}>{vote}</p>
+            <p css={pStyle(theme)}>{SCORE_TEXT[vote]}</p>
           </aside>
         </article>
       </div>
