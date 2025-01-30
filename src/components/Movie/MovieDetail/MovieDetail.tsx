@@ -48,7 +48,9 @@ function MovieDetail({ movieId }: MovieDetailProps) {
                 {movieDetail.genres.flatMap(genre => genre.name).join(', ')}
               </S.CaptionText>
               <S.StarImage src="./star_filled.png" alt="별점" />
-              <S.CaptionText>{movieDetail.vote_average}</S.CaptionText>
+              <S.CaptionText>
+                {movieDetail.vote_average.toFixed(1)}
+              </S.CaptionText>
             </S.DetailHeaderBox>
             <S.OverviewText>{movieDetail.overview}</S.OverviewText>
           </S.DetailContentBox>
