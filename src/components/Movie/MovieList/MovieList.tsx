@@ -13,6 +13,8 @@ interface MovieListProps {
   keyword: string;
 }
 
+type MovieQueryKey = 'popular' | 'searched';
+
 function MovieList({ keyword }: MovieListProps) {
   const [selectedMovie, setSelectedMovie] = useState<number>(0);
   const nextFetchTargetRef = useRef<HTMLDivElement | null>(null);
@@ -24,20 +26,24 @@ function MovieList({ keyword }: MovieListProps) {
     openModal('movie');
   };
 
-  const queries = [
-    {
-      name: 'popular',
+  const queries = {
+    popular: {
       condition: keyword.trim() === '',
       hook: usePopularMovies,
     },
-    {
-      name: 'searched',
+    searched: {
       condition: keyword.trim() !== '',
       hook: useSearchedMovies,
     },
-  ];
+  } as const;
 
-  const activeQuery = queries.find(query => query.condition) || queries[0];
+  const isMovieQueryKey = (key: string): key is MovieQueryKey => key in queries;
+
+  const activeQueryKey: MovieQueryKey =
+    Object.keys(queries).find(
+      (key): key is MovieQueryKey =>
+        isMovieQueryKey(key) && queries[key].condition,
+    ) || 'popular';
 
   const {
     movieList,
@@ -45,7 +51,7 @@ function MovieList({ keyword }: MovieListProps) {
     isFetchingNextPage,
     hasNextPage,
     isLoading,
-  } = activeQuery.hook(keyword);
+  } = queries[activeQueryKey].hook(keyword);
 
   useEffect(() => {
     const options = {
