@@ -25,16 +25,6 @@ const useStarRating = (movieId: number) => {
   const [starButtonStateList, setStarButtonStateList] = useState<StarButtonState[]>(INITIAL_STAR_BUTTON_LIST);
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  // 초기 로드 시 로컬 스토리지에서 별점 값 불러오기
-  useEffect(() => {
-    if (myRateList) {
-      const savedRate = myRateList.find(rate => rate.movieId === movieId);
-      if (savedRate) {
-        setSelectedIndex(savedRate.starButtonIndex); // 저장된 별점 인덱스 설정
-      }
-    }
-  }, [myRateList, movieId]);
-
   const handleStarButtonClick = (index: number) => {
     setSelectedIndex(index);
 
@@ -47,6 +37,15 @@ const useStarRating = (movieId: number) => {
       return updatedList;
     });
   };
+
+  // movieId가 변할 때마다 selectedIndex 갱신
+  useEffect(() => {
+    const savedRate = myRateList?.find(rate => rate.movieId === movieId);
+
+    if (savedRate) {
+      setSelectedIndex(savedRate.starButtonIndex);
+    }
+  }, [myRateList, movieId]);
 
   // selectedIndex에 따라 별 상태 업데이트
   useEffect(() => {
