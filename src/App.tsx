@@ -1,23 +1,16 @@
 import MovieListContainer from './components/MovieListContainer';
 import Header from './components/Header';
-import ErrorBoundary from './components/common/ErrorBoundary';
-import ErrorFallback from './components/common/ErrorFallback';
-import {QueryErrorResetBoundary} from '@tanstack/react-query';
+import QueryErrorBoundary from './components/common/QueryResetErrorboundary';
 
 function App() {
   return (
     <div style={AppStyle}>
-      <Header />
-
-      <QueryErrorResetBoundary>
-        {({reset}) => (
-          <ErrorBoundary fallback={ErrorFallback} resetQueryError={reset}>
-            <main>
-              <MovieListContainer />
-            </main>
-          </ErrorBoundary>
-        )}
-      </QueryErrorResetBoundary>
+      <QueryErrorBoundary>
+        <Header />
+        <main>
+          <MovieListContainer />
+        </main>
+      </QueryErrorBoundary>
     </div>
   );
 }
