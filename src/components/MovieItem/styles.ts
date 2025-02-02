@@ -18,7 +18,7 @@ export const Thumbnail = styled.img`
 
   background-size: contain;
   width: 100%;
-  height: 70%;
+  height: 15rem;
 `;
 
 export const Title = styled.p`

@@ -5,7 +5,7 @@ export const SkeletonContainer = styled.div`
   flex-direction: column;
   gap: 16px;
   width: 100%;
-  height: 20rem;
+  height: 16rem;
 
   border-radius: 8px;
   background-color: #e0e0e0;

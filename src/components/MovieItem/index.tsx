@@ -10,7 +10,7 @@ const MovieItem = ({id, title, poster_path, vote_average}: MovieItemProps) => (
   <S.MovieItem id={String(id)}>
     <a href="#">
       <S.MovieContent>
-        <img src={`${IMAGE_BASE_URL}${poster_path}`} loading="lazy" alt={`${title}-포스터`} />
+        <S.Thumbnail src={`${IMAGE_BASE_URL}${poster_path}`} loading="lazy" alt={`${title}-포스터`} />
         <S.Title>{title}</S.Title>
         <S.ScoreContainer>
           <S.Score>{toOneDecimalPlace(vote_average)}</S.Score>
