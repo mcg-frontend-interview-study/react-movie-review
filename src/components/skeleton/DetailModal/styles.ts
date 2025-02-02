@@ -92,6 +92,10 @@ export const SkeletonContent = styled(S.Content)`
 `;
 export const SkeletonRightContent = styled(S.RightContent)`
   width: 100%;
+
+  @media (min-width: 440px) and (max-width: 767px) {
+    gap: 1.8rem;
+  }
 `;
 export const SkeletonShortInfo = styled(S.ShortInfo)``;
 export const SkeletonOverviewWrapper = styled(S.Overview)``;
