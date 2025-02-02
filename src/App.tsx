@@ -1,4 +1,4 @@
-import MovieList from './components/MovieList';
+import MovieListContainer from './components/MovieListContainer';
 import Header from './components/Header';
 import ErrorBoundary from './components/common/ErrorBoundary';
 import ErrorFallback from './components/common/ErrorFallback';
@@ -13,7 +13,7 @@ function App() {
         {({reset}) => (
           <ErrorBoundary fallback={ErrorFallback} resetQueryError={reset}>
             <main>
-              <MovieList />
+              <MovieListContainer />
             </main>
           </ErrorBoundary>
         )}
