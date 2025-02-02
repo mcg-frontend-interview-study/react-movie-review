@@ -6,7 +6,7 @@ import {searchTextAtom} from '../jotai/atoms';
 const useGetList = () => {
   const searchText = useAtomValue(searchTextAtom);
 
-  const result = useInfiniteQuery({
+  const {data, ...rest} = useInfiniteQuery({
     queryKey: searchText ? ['searchedMovieList', searchText] : ['movieList'],
     queryFn: ({pageParam = 1}) =>
       searchText ? getSearchedMovieList({pageParam, title: searchText}) : getMovieList({pageParam}),
@@ -16,7 +16,9 @@ const useGetList = () => {
     },
   });
 
-  return result;
+  const movies = data ? data.pages.flatMap(page => page.results) : [];
+
+  return {movies, ...rest};
 };
 
 export default useGetList;
