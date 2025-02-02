@@ -14,7 +14,6 @@ interface DetailModalProps {
 
 const DetailModal = ({selectedMovieId, closeModal}: DetailModalProps) => {
   const {data} = useGetMovieDetail(selectedMovieId);
-  if (!data) return null;
 
   const {poster_path, vote_average, title, overview, genres} = data;
 

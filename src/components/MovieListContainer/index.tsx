@@ -6,6 +6,8 @@ import DetailModal from '../DetailModal';
 
 import useMovieDetailModalState from '../../hooks/useMovieDetailModalState';
 import MovieList from '../MovieList';
+import {Suspense} from 'react';
+import SkeletonDetailModal from '../skeleton/DetailModal';
 
 const MovieListContainer = () => {
   const searchText = useAtomValue(searchTextAtom);
@@ -18,7 +20,9 @@ const MovieListContainer = () => {
         <MovieList openModal={openModal} />
       </S.ContentContainer>
 
-      {selectedMovieId && <DetailModal selectedMovieId={selectedMovieId} closeModal={closeModal} />}
+      <Suspense fallback={<SkeletonDetailModal />}>
+        {selectedMovieId && <DetailModal selectedMovieId={selectedMovieId} closeModal={closeModal} />}
+      </Suspense>
     </S.MovieListContainer>
   );
 };
